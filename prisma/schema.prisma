@@ -10,3 +10,39 @@ datasource db {
   url      = env("DATABASE_URL")
   shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
 }
+
+model User {
+  id Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  email String @unique
+  firstName String
+  lastName String
+  userName String
+  password String
+  comments Comment[]
+}
+
+model Suggestion {
+  id Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  title String @unique
+  details String
+  category String
+  upvotes Int
+  comments Comment[]
+  status String
+}
+
+model Comment {
+  id Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  parentId Int
+  content String
+  user User @relation(fields: [userId], references: [id])
+  userId Int
+  suggestion Suggestion @relation(fields: [suggestionId], references: [id])
+  suggestionId Int
+}
