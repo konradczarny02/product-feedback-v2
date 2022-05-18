@@ -1,5 +1,8 @@
 import styled from 'styled-components';
 import NavigationProvider from '../providers/NavigationProvider';
+import MobileNav from '../components/organisms/MobileNav/MobileNav';
+import Overlay from '../components/atoms/Overlay/Overlay';
+import Sidebar from '../components/organisms/Sidebar/Sidebar';
 
 export const Wrapper = styled.div`
   @media (min-width: 1440px) {
@@ -14,7 +17,11 @@ export const Wrapper = styled.div`
 const Home = () => {
   return (
     <Wrapper>
-      <NavigationProvider></NavigationProvider>
+      <NavigationProvider>
+        <MobileNav />
+        <Overlay />
+        <Sidebar />
+      </NavigationProvider>
     </Wrapper>
   );
 };
