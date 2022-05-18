@@ -1,14 +1,20 @@
 import styled from 'styled-components';
+import NavigationProvider from '../providers/NavigationProvider';
 
 export const Wrapper = styled.div`
-  color: ${({ theme }) => theme.colors.pink};
+  @media (min-width: 1440px) {
+    display: grid;
+    grid-template-columns: 250px 900px;
+    grid-template-rows: 96px 1fr;
+    margin: 96px auto 0;
+    width: 1150px;
+  }
 `;
 
 const Home = () => {
   return (
     <Wrapper>
-      <h2>hi</h2>
-      <h3>World</h3>
+      <NavigationProvider></NavigationProvider>
     </Wrapper>
   );
 };
