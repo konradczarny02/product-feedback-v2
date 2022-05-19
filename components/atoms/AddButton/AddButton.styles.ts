@@ -1,7 +1,6 @@
-import Link from 'next/link';
 import styled from 'styled-components';
 
-export const AddButtonWrapper = styled(Link)`
+export const AddButtonWrapper = styled.a`
   width: 150px;
   font-size: 13px;
   font-weight: 700;
