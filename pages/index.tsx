@@ -4,6 +4,8 @@ import MobileNav from '../components/organisms/MobileNav/MobileNav';
 import Overlay from '../components/atoms/Overlay/Overlay';
 import Sidebar from '../components/organisms/Sidebar/Sidebar';
 import DesktopNav from '../components/organisms/DesktopNav/DesktopNav';
+import SuggestionsList from '../components/organisms/SuggestionsList/SuggestionsList';
+import prisma from '../lib/prisma';
 
 export const Wrapper = styled.div`
   @media (min-width: 1440px) {
@@ -15,7 +17,7 @@ export const Wrapper = styled.div`
   }
 `;
 
-const Home = () => {
+const Home = ({ suggestions }) => {
   return (
     <Wrapper>
       <NavigationProvider>
@@ -24,8 +26,17 @@ const Home = () => {
         <Sidebar />
       </NavigationProvider>
       <DesktopNav />
+      <SuggestionsList suggestions={suggestions} />
     </Wrapper>
   );
+};
+
+export const getServerSideProps = async () => {
+  const suggestions = await prisma.suggestion.findMany({});
+
+  return {
+    props: { suggestions },
+  };
 };
 
 export default Home;
