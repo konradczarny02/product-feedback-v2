@@ -5,3 +5,7 @@ export type SortBy = 'Most Upvotes' | 'Least Upvotes' | 'Least Comments' | 'Most
 export type PropsChildren = {
   children: ReactNode;
 };
+
+export type Category = 'Bug' | 'Enhancement' | 'UX' | 'UI' | 'Feature';
+
+export type Status = 'Planned' | 'In-Progress' | 'Live';

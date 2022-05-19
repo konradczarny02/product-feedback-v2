@@ -1,10 +1,12 @@
+import { Category, Status } from '../types/types';
+
 type SuggestionType = {
   title: string;
   details: string;
-  category: 'Bug' | 'Enhancement' | 'UX' | 'UI' | 'Feature';
+  category: Category;
   upvotes: number;
   comments: any[];
-  status: 'Planned' | 'In-Progress' | 'Live';
+  status: Status;
 };
 
 export const suggestions: SuggestionType[] = [
