@@ -8,7 +8,6 @@ import EmptyFeedback from '../../molecules/EmptyFeedback/EmptyFeedback';
 const SuggestionsList = ({ suggestions }) => {
   const { state } = useContext(GlobalContext);
   const [filteredSuggestions, setFilteredSuggestions] = useState(suggestions);
-  console.log(state);
 
   useEffect(() => {
     if (state.filter === 'All') {
