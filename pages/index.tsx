@@ -3,6 +3,7 @@ import NavigationProvider from '../providers/NavigationProvider';
 import MobileNav from '../components/organisms/MobileNav/MobileNav';
 import Overlay from '../components/atoms/Overlay/Overlay';
 import Sidebar from '../components/organisms/Sidebar/Sidebar';
+import DesktopNav from '../components/organisms/DesktopNav/DesktopNav';
 
 export const Wrapper = styled.div`
   @media (min-width: 1440px) {
@@ -22,6 +23,7 @@ const Home = () => {
         <Overlay />
         <Sidebar />
       </NavigationProvider>
+      <DesktopNav />
     </Wrapper>
   );
 };
