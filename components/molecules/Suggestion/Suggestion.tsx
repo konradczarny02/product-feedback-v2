@@ -2,12 +2,13 @@ import Filter from '../../atoms/Filter/Filter';
 import Upvotes from '../../atoms/Upvotes/Upvotes';
 import CommentsNumber from '../../atoms/CommentsNumber/CommentsNumber';
 import { StyledSuggestion, StyledDescription } from './Suggestion.styles';
+import { Category } from '../../../types/types';
 
 type SuggestionProps = {
   data: {
     title: string;
     details: string;
-    category: 'Bug' | 'Enhancement' | 'UX' | 'UI' | 'Feature';
+    category: Category;
     comments: number;
     upvotes: number;
   };

@@ -8,6 +8,8 @@ import EmptyFeedback from '../../molecules/EmptyFeedback/EmptyFeedback';
 const SuggestionsList = ({ suggestions }) => {
   const { state } = useContext(GlobalContext);
   const [filteredSuggestions, setFilteredSuggestions] = useState(suggestions);
+  const filter = state.filter;
+  const sort = state.sortBy;
 
   useEffect(() => {
     if (state.filter === 'All') {
@@ -15,7 +17,8 @@ const SuggestionsList = ({ suggestions }) => {
     } else {
       setFilteredSuggestions(suggestions.filter((suggestion) => suggestion.category === state.filter));
     }
-  }, [state.filter, suggestions]);
+  }, [filter, suggestions]);
+  /*
 
   useEffect(() => {
     switch (state.sortBy) {
@@ -31,7 +34,8 @@ const SuggestionsList = ({ suggestions }) => {
       case 'Least Comments':
         setFilteredSuggestions([...filteredSuggestions].sort((a, b) => a.comments - b.comments));
     }
-  }, [state.sortBy, filteredSuggestions]);
+  }, [sort, filteredSuggestions]);
+*/
 
   return (
     <>
