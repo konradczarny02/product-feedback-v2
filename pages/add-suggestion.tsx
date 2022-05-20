@@ -9,7 +9,7 @@ export const Wrapper = styled.div`
   }
 `;
 
-const CreateFeedback = () => {
+const AddSuggestion = () => {
   return (
     <Wrapper>
       <ReturnHome />
@@ -18,4 +18,4 @@ const CreateFeedback = () => {
   );
 };
 
-export default CreateFeedback;
+export default AddSuggestion;

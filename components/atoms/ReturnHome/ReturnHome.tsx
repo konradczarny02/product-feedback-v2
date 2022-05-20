@@ -4,8 +4,8 @@ import Link from 'next/link';
 
 const ReturnHome = () => {
   return (
-    <Link href="/">
-      <StyledReturn href="/">
+    <Link href="/" passHref>
+      <StyledReturn>
         <ReturnIcon />
         <p>Go back</p>
       </StyledReturn>
