@@ -8,14 +8,13 @@ import EmptyFeedback from '../../molecules/EmptyFeedback/EmptyFeedback';
 const SuggestionsList = ({ suggestions }) => {
   const { state } = useContext(GlobalContext);
   const [filteredSuggestions, setFilteredSuggestions] = useState(suggestions);
-  const filter = state.filter;
-  const sort = state.sortBy;
+  const { filter, sortBy } = state;
 
   useEffect(() => {
-    if (state.filter === 'All') {
+    if (filter === 'All') {
       setFilteredSuggestions(suggestions);
     } else {
-      setFilteredSuggestions(suggestions.filter((suggestion) => suggestion.category === state.filter));
+      setFilteredSuggestions(suggestions.filter((suggestion) => suggestion.category === filter));
     }
   }, [filter, suggestions]);
   /*

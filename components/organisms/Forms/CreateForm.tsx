@@ -3,6 +3,8 @@ import AddIcon from '../../atoms/AddIcon/AddIcon';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { Category } from '../../../types/types';
 
+const errorMessage = `Can't be empty`;
+
 interface FormInterface {
   title: string;
   category: Category;
@@ -27,7 +29,7 @@ const CreateForm = () => {
       <Heading>Feedback Title</Heading>
       <Description>Add a short, descriptive headline</Description>
       <input type="text" {...register('title', { required: true })} />
-      {errors.title && <StyledError margin={-22}>Can't be empty</StyledError>}
+      {errors.title && <StyledError margin={-22}>{errorMessage}</StyledError>}
       <Heading>Category</Heading>
       <Description>Choose a category for your feedback</Description>
       <select {...register('category')}>
@@ -40,7 +42,7 @@ const CreateForm = () => {
       <Heading>Feedback Detail</Heading>
       <Description>Include any specific comments on what should be improved, added, etc.</Description>
       <textarea {...register('details', { required: true })}></textarea>
-      {errors.details && <StyledError margin={-38}>Can't be empty</StyledError>}
+      {errors.details && <StyledError margin={-38}>{errorMessage}</StyledError>}
       <input type="submit" value="Add Feedback" />
       <input type="reset" value="Cancel" />
     </StyledForm>
