@@ -9,6 +9,7 @@ const SuggestionsList = ({ suggestions }) => {
   const { state } = useContext(GlobalContext);
   const [filteredSuggestions, setFilteredSuggestions] = useState(suggestions);
   const { filter, sortBy } = state;
+  console.log(state);
 
   useEffect(() => {
     if (filter === 'All') {
@@ -17,10 +18,9 @@ const SuggestionsList = ({ suggestions }) => {
       setFilteredSuggestions(suggestions.filter((suggestion) => suggestion.category === filter));
     }
   }, [filter, suggestions]);
-  /*
 
   useEffect(() => {
-    switch (state.sortBy) {
+    switch (sortBy) {
       case 'Most Upvotes':
         setFilteredSuggestions([...filteredSuggestions].sort((a, b) => b.upvotes - a.upvotes));
         break;
@@ -33,8 +33,7 @@ const SuggestionsList = ({ suggestions }) => {
       case 'Least Comments':
         setFilteredSuggestions([...filteredSuggestions].sort((a, b) => a.comments - b.comments));
     }
-  }, [sort, filteredSuggestions]);
-*/
+  }, [sortBy, suggestions]);
 
   return (
     <>

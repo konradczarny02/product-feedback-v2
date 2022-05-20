@@ -1,7 +1,7 @@
 import { FilterWrapper } from './Filter.styles';
-import { useContext } from 'react';
-import { GlobalContext } from '../../../providers/GlobalProvider';
 import { Filter as FilterType } from '../../../types/types';
+import { GlobalContext } from '../../../providers/GlobalProvider';
+import { useContext } from 'react';
 
 const Filter = ({ filter }: { filter: string }) => {
   const { handleFilterChange } = useContext(GlobalContext);

@@ -7,7 +7,6 @@ import DesktopNav from '../components/organisms/DesktopNav/DesktopNav';
 import SuggestionsList from '../components/organisms/SuggestionsList/SuggestionsList';
 import prisma from '../lib/prisma';
 import Sort from '../components/organisms/Sort/Sort';
-import GlobalProvider from '../providers/GlobalProvider';
 
 export const Wrapper = styled.div`
   @media (min-width: 1440px) {
@@ -22,16 +21,14 @@ export const Wrapper = styled.div`
 const Home = ({ suggestions }) => {
   return (
     <Wrapper>
-      <GlobalProvider>
-        <NavigationProvider>
-          <MobileNav />
-          <Overlay />
-          <Sidebar />
-        </NavigationProvider>
-        <DesktopNav />
-        <Sort />
-        <SuggestionsList suggestions={suggestions} />
-      </GlobalProvider>
+      <NavigationProvider>
+        <MobileNav />
+        <Overlay />
+        <Sidebar />
+      </NavigationProvider>
+      <DesktopNav />
+      <Sort />
+      <SuggestionsList suggestions={suggestions} />
     </Wrapper>
   );
 };

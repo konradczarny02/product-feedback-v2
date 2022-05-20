@@ -1,14 +1,14 @@
-import Filter from '../../atoms/Filter/Filter';
 import Upvotes from '../../atoms/Upvotes/Upvotes';
 import CommentsNumber from '../../atoms/CommentsNumber/CommentsNumber';
 import { StyledSuggestion, StyledDescription } from './Suggestion.styles';
-import { Category } from '../../../types/types';
+import { Category as CategoryType } from '../../../types/types';
+import Category from '../../atoms/Category/Category';
 
 type SuggestionProps = {
   data: {
     title: string;
     details: string;
-    category: Category;
+    category: CategoryType;
     comments: number;
     upvotes: number;
   };
@@ -20,7 +20,7 @@ const Suggestion = ({ data: { title, details, category, upvotes, comments } }: S
       <h3>{title}</h3>
       <StyledDescription>{details}</StyledDescription>
       <span>
-        <Filter filter={category} />
+        <Category name={category} />
       </span>
       <Upvotes upvotesNumber={upvotes} />
       <CommentsNumber commentsNumber={comments ? comments : 0} />
