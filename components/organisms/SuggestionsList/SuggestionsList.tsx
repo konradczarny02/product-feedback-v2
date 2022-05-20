@@ -7,33 +7,41 @@ import EmptyFeedback from '../../molecules/EmptyFeedback/EmptyFeedback';
 
 const SuggestionsList = ({ suggestions }) => {
   const { state } = useContext(GlobalContext);
-  const [filteredSuggestions, setFilteredSuggestions] = useState(suggestions);
   const { filter, sortBy } = state;
-  console.log(state);
+  const [filteredSuggestions, setFilteredSuggestions] = useState(suggestions);
 
   useEffect(() => {
     if (filter === 'All') {
-      setFilteredSuggestions(suggestions);
+      switch (sortBy) {
+        case 'Most Upvotes':
+          setFilteredSuggestions([...suggestions].sort((a, b) => b.upvotes - a.upvotes));
+          break;
+        case 'Least Upvotes':
+          setFilteredSuggestions([...suggestions].sort((a, b) => a.upvotes - b.upvotes));
+          break;
+        case 'Most Comments':
+          setFilteredSuggestions([...suggestions].sort((a, b) => b.comments - a.comments));
+          break;
+        case 'Least Comments':
+          setFilteredSuggestions([...suggestions].sort((a, b) => a.comments - b.comments));
+      }
     } else {
-      setFilteredSuggestions(suggestions.filter((suggestion) => suggestion.category === filter));
+      const filtered = suggestions.filter((suggestion) => suggestion.category === filter);
+      switch (sortBy) {
+        case 'Most Upvotes':
+          setFilteredSuggestions([...filtered].sort((a, b) => b.upvotes - a.upvotes));
+          break;
+        case 'Least Upvotes':
+          setFilteredSuggestions([...filtered].sort((a, b) => a.upvotes - b.upvotes));
+          break;
+        case 'Most Comments':
+          setFilteredSuggestions([...filtered].sort((a, b) => b.comments - a.comments));
+          break;
+        case 'Least Comments':
+          setFilteredSuggestions([...filtered].sort((a, b) => a.comments - b.comments));
+      }
     }
-  }, [filter, suggestions]);
-
-  useEffect(() => {
-    switch (sortBy) {
-      case 'Most Upvotes':
-        setFilteredSuggestions([...filteredSuggestions].sort((a, b) => b.upvotes - a.upvotes));
-        break;
-      case 'Least Upvotes':
-        setFilteredSuggestions([...filteredSuggestions].sort((a, b) => a.upvotes - b.upvotes));
-        break;
-      case 'Most Comments':
-        setFilteredSuggestions([...filteredSuggestions].sort((a, b) => b.comments - a.comments));
-        break;
-      case 'Least Comments':
-        setFilteredSuggestions([...filteredSuggestions].sort((a, b) => a.comments - b.comments));
-    }
-  }, [sortBy, suggestions]);
+  }, [filter, suggestions, sortBy]);
 
   return (
     <>
