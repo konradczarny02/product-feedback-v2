@@ -5,7 +5,7 @@ export const ButtonWrapper = styled.div`
   justify-content: flex-end;
 `;
 
-export const FormWrapper = styled.form`
+export const FormWrapper = styled.form<{ isTooLong: boolean }>`
   width: 100%;
   margin-top: 24px;
   padding: 24px;
@@ -40,7 +40,7 @@ export const FormWrapper = styled.form`
     }
 
     &:focus {
-      outline: 1px solid ${({ theme }) => theme.colors.blue};
+      outline: 1px solid ${({ theme, isTooLong }) => (isTooLong ? theme.colors.error : theme.colors.blue)};
     }
   }
 
@@ -48,7 +48,7 @@ export const FormWrapper = styled.form`
     margin-top: 12px;
     font-size: 13px;
     font-weight: 400;
-    color: ${({ theme }) => theme.colors.gray};
+    color: ${({ theme, isTooLong }) => (isTooLong ? theme.colors.error : theme.colors.gray)};
     flex-basis: 50%;
   }
 
