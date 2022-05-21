@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import ReturnHome from '../components/atoms/ReturnHome/ReturnHome';
-import CreateForm from '../components/organisms/Forms/CreateForm';
+import ReturnHome from '../../components/atoms/ReturnHome/ReturnHome';
+import CreateForm from '../../components/organisms/Forms/CreateForm';
 
 export const Wrapper = styled.div`
   @media (min-width: 768px) {
@@ -9,7 +9,7 @@ export const Wrapper = styled.div`
   }
 `;
 
-const AddSuggestion = () => {
+const Add = () => {
   return (
     <Wrapper>
       <ReturnHome />
@@ -18,4 +18,4 @@ const AddSuggestion = () => {
   );
 };
 
-export default AddSuggestion;
+export default Add;

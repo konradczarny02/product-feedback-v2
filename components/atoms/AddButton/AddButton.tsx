@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 const AddButton = () => {
   return (
-    <Link href="/add-suggestion" passHref>
+    <Link href="/suggestion/add" passHref>
       <AddButtonWrapper>+ Add Feedback</AddButtonWrapper>
     </Link>
   );
