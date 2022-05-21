@@ -11,7 +11,7 @@ const Sort = () => {
   const { handleSortChange } = useContext(GlobalContext);
 
   useEffect(() => {
-    fetcher('/suggestions')
+    fetcher('/suggestion')
       .then((data) => data.json())
       .then((data) => setSuggestionsNumber(data.length));
   }, []);

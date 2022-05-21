@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import Upvotes from '../../atoms/Upvotes/Upvotes';
 import CommentsNumber from '../../atoms/CommentsNumber/CommentsNumber';
 import { StyledSuggestion, StyledDescription } from './Suggestion.styles';
@@ -6,6 +7,7 @@ import Category from '../../atoms/Category/Category';
 
 type SuggestionProps = {
   data: {
+    id: number;
     title: string;
     details: string;
     category: CategoryType;
@@ -14,9 +16,14 @@ type SuggestionProps = {
   };
 };
 
-const Suggestion = ({ data: { title, details, category, upvotes, comments } }: SuggestionProps) => {
+const Suggestion = ({ data: { id, title, details, category, upvotes, comments } }: SuggestionProps) => {
+  const router = useRouter();
   return (
-    <StyledSuggestion>
+    <StyledSuggestion
+      onClick={() => {
+        router.push(`/suggestion/${id}`);
+      }}
+    >
       <h3>{title}</h3>
       <StyledDescription>{details}</StyledDescription>
       <span>
