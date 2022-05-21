@@ -7,7 +7,7 @@ interface OverlayProps {
 export const StyledOverlay = styled.div<OverlayProps>`
   width: 100vw;
   background-color: rgba(0, 0, 0, 0.2);
-  position: fixed;
+  position: absolute;
   left: 0;
   top: 72px;
   height: calc(100vh - 72px);
