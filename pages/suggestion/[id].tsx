@@ -3,7 +3,6 @@ import Suggestion from '../../components/molecules/Suggestion/Suggestion';
 import { StyledList } from '../../components/organisms/SuggestionsList/SuggestionsList.styles';
 
 const SuggestionPage = ({ suggestion }) => {
-  console.log(suggestion);
   return (
     <StyledList>
       <Suggestion data={suggestion} />
