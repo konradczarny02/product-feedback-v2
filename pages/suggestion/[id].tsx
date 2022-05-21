@@ -1,12 +1,20 @@
 import prisma from '../../lib/prisma';
 import Suggestion from '../../components/molecules/Suggestion/Suggestion';
-import { StyledList } from '../../components/organisms/SuggestionsList/SuggestionsList.styles';
+import styled from 'styled-components';
+import AddComment from '../../components/molecules/AddComment/AddComment';
+
+export const Wrapper = styled.div`
+  width: 90%;
+  height: 100vh;
+  margin: auto;
+`;
 
 const SuggestionPage = ({ suggestion }) => {
   return (
-    <StyledList>
+    <Wrapper>
       <Suggestion data={suggestion} />
-    </StyledList>
+      <AddComment />
+    </Wrapper>
   );
 };
 
