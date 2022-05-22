@@ -22,6 +22,10 @@ export const GlobalStyles = createGlobalStyle`
     overflow-x: hidden;
   }
   
+  #__next {
+    overflow: hidden;
+  }
+  
   a, input, button, textarea, select {
     font-family: 'Jost', sans-serif;
   }
