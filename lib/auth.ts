@@ -4,28 +4,30 @@ import { NextApiRequest, NextApiResponse } from 'next';
 
 export const validateRoute = (handler) => {
   return async (req: NextApiRequest, res: NextApiResponse) => {
-    const cookieName = process.env.COOKIE;
-    const token = req.cookies.cookieName;
+    const token = req.cookies.FEEDBACK_ACCESS_TOKEN;
 
     if (token) {
       let user;
 
       try {
-        const { id } = jwt.verify(token, process.env.JWT_SECRET);
+        const { id } = jwt.verify(token, 'shskjfsk');
         user = await prisma.user.findUnique({
           where: { id },
         });
+
         if (!user) {
           throw new Error('Not real user');
         }
-      } catch (e) {
+      } catch (error) {
         res.status(401);
-        res.json({ error: 'Not authorized' });
+        res.json({ error: 'Not Authorizied' });
         return;
       }
+
       return handler(req, res, user);
     }
+
     res.status(401);
-    res.json({ error: 'Not authorized' });
+    res.json({ error: 'Not Authorizied' });
   };
 };
