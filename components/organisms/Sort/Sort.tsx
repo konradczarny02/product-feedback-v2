@@ -1,14 +1,15 @@
 import AddButton from '../../atoms/AddButton/AddButton';
 import { SortWrapper } from './Sort.styles';
 import SuggestionIcon from '../../../styles/images/icons/suggestionsIcon.svg';
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import fetcher from '../../../lib/fetcher';
 import { SortBy } from '../../../types/types';
-import { SortContext } from '../../../providers/SortProvider';
+import { useAppDispatch } from '../../../store/hooks';
+import { change } from '../../../store/sortSlice';
 
 const Sort = () => {
   const [suggestionsNumber, setSuggestionsNumber] = useState<number>(0);
-  const { handleSortChange } = useContext(SortContext);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     fetcher('/suggestion')
@@ -25,7 +26,7 @@ const Sort = () => {
         onChange={(event) => {
           const target = event.target as HTMLSelectElement;
           const value = target.value as SortBy;
-          handleSortChange(value);
+          dispatch(change(value));
         }}
       >
         <option value="Most Upvotes">Most Upvotes</option>
