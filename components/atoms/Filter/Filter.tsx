@@ -1,16 +1,16 @@
 import { FilterWrapper } from './Filter.styles';
 import { Filter as FilterType } from '../../../types/types';
-import { useContext } from 'react';
-import { FilterContext } from '../../../providers/FilterProvider';
+import { useAppDispatch } from '../../../store/hooks';
+import { change } from '../../../store/filterSlice';
 
 const Filter = ({ filter }: { filter: string }) => {
-  const { handleFilterChange } = useContext(FilterContext);
+  const dispatch = useAppDispatch();
   return (
     <FilterWrapper
       onClick={(e) => {
         const target = event.target as HTMLButtonElement;
         const value = target.textContent as FilterType;
-        handleFilterChange(value);
+        dispatch(change(value));
       }}
     >
       {filter}
