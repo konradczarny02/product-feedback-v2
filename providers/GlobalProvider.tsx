@@ -1,4 +1,4 @@
-import { createContext, useReducer } from 'react';
+import { createContext, useState } from 'react';
 import { Filter, PropsChildren, SortBy } from '../types/types';
 
 type State = {
@@ -6,52 +6,31 @@ type State = {
   sortBy: SortBy;
 };
 
-type Action = { type: 'CHANGE_FILTER'; payload: Filter } | { type: 'CHANGE_SORT'; payload: SortBy };
-
-const initialState: State = {
-  filter: 'All',
-  sortBy: 'Most Upvotes',
-};
-
 type GlobalContext = {
-  state: State;
+  filter: Filter;
+  sortBy: SortBy;
   handleFilterChange: (value: Filter) => void;
   handleSortChange: (value: SortBy) => void;
 };
 
-const reducer = (state: State, action: Action) => {
-  switch (action.type) {
-    case 'CHANGE_FILTER':
-      return {
-        ...state,
-        filter: action.payload,
-      };
-    case 'CHANGE_SORT':
-      return {
-        ...state,
-        sortBy: action.payload,
-      };
-    default:
-      return state;
-  }
-};
-
 export const GlobalContext = createContext<GlobalContext>({
-  state: { filter: 'All', sortBy: 'Most Upvotes' },
+  filter: 'All',
+  sortBy: 'Most Upvotes',
   handleSortChange: () => {},
   handleFilterChange: () => {},
 });
 
 const GlobalProvider = ({ children }: PropsChildren) => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [filter, setFilter] = useState<Filter>('All');
+  const [sortBy, setSortBy] = useState<SortBy>('Most Upvotes');
   const handleFilterChange = (value: Filter) => {
-    dispatch({ type: 'CHANGE_FILTER', payload: value });
+    setFilter(value);
   };
   const handleSortChange = (value: SortBy) => {
-    dispatch({ type: 'CHANGE_SORT', payload: value });
+    setSortBy(value);
   };
 
-  const value = { state, handleFilterChange, handleSortChange };
+  const value = { filter, sortBy, handleFilterChange, handleSortChange };
 
   return <GlobalContext.Provider value={value}>{children}</GlobalContext.Provider>;
 };

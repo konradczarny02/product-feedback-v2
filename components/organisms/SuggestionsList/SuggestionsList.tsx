@@ -6,8 +6,7 @@ import EmptyFeedback from '../../molecules/EmptyFeedback/EmptyFeedback';
 import { useSort } from '../../../lib/useSort';
 
 const SuggestionsList = ({ suggestions }) => {
-  const { state } = useContext(GlobalContext);
-  const { filter, sortBy } = state;
+  const { filter, sortBy } = useContext(GlobalContext);
   const [filteredSuggestions] = useSort(suggestions, filter, sortBy);
 
   return (

@@ -8,10 +8,8 @@ import GlobalProvider from '../providers/GlobalProvider';
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ThemeProvider theme={theme}>
-      <GlobalProvider>
-        <GlobalStyles />
-        <Component {...pageProps} />
-      </GlobalProvider>
+      <GlobalStyles />
+      <Component {...pageProps} />
     </ThemeProvider>
   );
 }
