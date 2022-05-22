@@ -1,10 +1,10 @@
 import { FilterWrapper } from './Filter.styles';
 import { Filter as FilterType } from '../../../types/types';
-import { GlobalContext } from '../../../providers/GlobalProvider';
 import { useContext } from 'react';
+import { FilterContext } from '../../../providers/FilterProvider';
 
 const Filter = ({ filter }: { filter: string }) => {
-  const { handleFilterChange } = useContext(GlobalContext);
+  const { handleFilterChange } = useContext(FilterContext);
   return (
     <FilterWrapper
       onClick={(e) => {

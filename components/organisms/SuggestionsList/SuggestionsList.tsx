@@ -1,12 +1,14 @@
 import { StyledList } from './SuggestionsList.styles';
 import Suggestion from '../../molecules/Suggestion/Suggestion';
 import { useContext } from 'react';
-import { GlobalContext } from '../../../providers/GlobalProvider';
 import EmptyFeedback from '../../molecules/EmptyFeedback/EmptyFeedback';
 import { useSort } from '../../../lib/useSort';
+import { FilterContext } from '../../../providers/FilterProvider';
+import { SortContext } from '../../../providers/SortProvider';
 
 const SuggestionsList = ({ suggestions }) => {
-  const { filter, sortBy } = useContext(GlobalContext);
+  const { filter } = useContext(FilterContext);
+  const { sortBy } = useContext(SortContext);
   const [filteredSuggestions] = useSort(suggestions, filter, sortBy);
 
   return (

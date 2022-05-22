@@ -3,12 +3,12 @@ import { SortWrapper } from './Sort.styles';
 import SuggestionIcon from '../../../styles/images/icons/suggestionsIcon.svg';
 import { useContext, useEffect, useState } from 'react';
 import fetcher from '../../../lib/fetcher';
-import { GlobalContext } from '../../../providers/GlobalProvider';
 import { SortBy } from '../../../types/types';
+import { SortContext } from '../../../providers/SortProvider';
 
 const Sort = () => {
   const [suggestionsNumber, setSuggestionsNumber] = useState<number>(0);
-  const { handleSortChange } = useContext(GlobalContext);
+  const { handleSortChange } = useContext(SortContext);
 
   useEffect(() => {
     fetcher('/suggestion')
