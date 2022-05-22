@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 interface SidebarWrapperInterface {
   isOpen: boolean;

@@ -36,7 +36,11 @@ const reducer = (state: State, action: Action) => {
   }
 };
 
-export const GlobalContext = createContext<GlobalContext | null>(null);
+export const GlobalContext = createContext<GlobalContext>({
+  state: { filter: 'All', sortBy: 'Most Upvotes' },
+  handleSortChange: () => {},
+  handleFilterChange: () => {},
+});
 
 const GlobalProvider = ({ children }: PropsChildren) => {
   const [state, dispatch] = useReducer(reducer, initialState);
