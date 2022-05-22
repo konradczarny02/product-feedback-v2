@@ -12,6 +12,11 @@ export const GlobalStyles = createGlobalStyle`
     padding: 0;
   }
   
+  div#__next {
+    overflow: hidden;
+    position: relative;
+  }
+  
   body {
     font-family: 'Jost', sans-serif;
     background-color: ${({ theme }) => theme.colors.darkerWhite};
@@ -20,10 +25,6 @@ export const GlobalStyles = createGlobalStyle`
     margin: 0;
     padding: 0;
     overflow-x: hidden;
-  }
-  
-  #__next {
-    overflow: hidden;
   }
   
   a, input, button, textarea, select {
