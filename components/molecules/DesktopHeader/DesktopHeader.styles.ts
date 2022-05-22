@@ -14,4 +14,8 @@ export const DesktopHeaderWrapper = styled.header`
   justify-content: flex-end;
   padding-bottom: 24px;
   padding-left: 24px;
+
+  @media (min-width: 1440px) {
+    width: 100%;
+  }
 `;
