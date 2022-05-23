@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { StyledError } from '../components/organisms/Forms/CreateForm.styles';
 
-export const Wrapper = styled.div<{ errors: any; authError: string }>`
+export const SignInWrapper = styled.div<{ errors: any; authError: string }>`
   width: 90%;
   max-width: 1024px;
   margin: 50px auto;
@@ -19,6 +19,7 @@ export const Wrapper = styled.div<{ errors: any; authError: string }>`
     font-weight: 700;
     color: ${({ theme }) => theme.colors.darkBlue};
     margin: 24px 0;
+    text-align: center;
 
     @media (min-width: 768px) {
       font-size: 24px;
@@ -54,6 +55,7 @@ export const Wrapper = styled.div<{ errors: any; authError: string }>`
       &::placeholder {
         font-size: 13px;
         color: ${({ theme }) => theme.colors.gray};
+        opacity: 0.6;
 
         @media (min-width: 768px) {
           font-size: 15px;
@@ -125,6 +127,11 @@ export const Wrapper = styled.div<{ errors: any; authError: string }>`
     font-size: 13px;
     color: ${({ theme }) => theme.colors.white};
     font-weight: 700;
+    cursor: pointer;
+
+    &[disabled] {
+      cursor: not-allowed;
+    }
 
     @media (min-width: 768px) {
       font-size: 15px;
@@ -157,12 +164,12 @@ const SignUp = () => {
       reset();
       setTimeout(() => {
         router.push('/');
-      }, 3000);
+      }, 200);
     }
   };
   return (
-    <Wrapper errors={errors} authError={authError}>
-      <h1>Sign in</h1>
+    <SignInWrapper errors={errors} authError={authError}>
+      <h1>Sign In</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="email">
           Email
@@ -203,7 +210,7 @@ const SignUp = () => {
           </button>
         </div>
       </form>
-    </Wrapper>
+    </SignInWrapper>
   );
 };
 

@@ -1,42 +1,178 @@
 import { useForm, SubmitHandler } from 'react-hook-form';
 import styled from 'styled-components';
+import { StyledError } from '../components/organisms/Forms/CreateForm.styles';
+import { useState } from 'react';
+import { SignInWrapper } from './signin';
+import { useRouter } from 'next/router';
+import { auth } from '../lib/mutations';
 
-export const Wrapper = styled.div`
-  width: 100%;
-  height: 100%;
-  background-color: ${({ theme }) => theme.colors.white};
+const firstLetterToUpperCase = (str) => {
+  return `${str[0].toUpperCase()}${str.slice(1)}`;
+};
+
+export const SignUpWrapper = styled(SignInWrapper)`
+  input#firstName {
+    outline: ${({ theme, errors, authError }) => {
+      if (errors.firstName || authError) {
+        return `1px solid ${theme.colors.error}`;
+      } else {
+        return `none`;
+      }
+    }};
+    &:focus {
+      outline: ${({ theme, errors, authError }) => {
+        if (errors.firstName || authError) {
+          return `1px solid ${theme.colors.error}`;
+        } else {
+          return `1px solid ${theme.colors.blue}`;
+        }
+      }};
+    }
+  }
+
+  input#lastName {
+    outline: ${({ theme, errors, authError }) => {
+      if (errors.lastName || authError) {
+        return `1px solid ${theme.colors.error}`;
+      } else {
+        return `none`;
+      }
+    }};
+    &:focus {
+      outline: ${({ theme, errors, authError }) => {
+        if (errors.lastName || authError) {
+          return `1px solid ${theme.colors.error}`;
+        } else {
+          return `1px solid ${theme.colors.blue}`;
+        }
+      }};
+    }
+  }
 `;
 
 interface FormInterface {
   email: string;
   firstName: string;
   lastName: string;
-  userName: string;
   password: string;
 }
 
 const SignUp = () => {
+  const [authError, setAuthError] = useState<string>('');
+  const router = useRouter();
   const {
     register,
     formState: { errors },
     handleSubmit,
     reset,
   } = useForm<FormInterface>();
-  const onSubmit: SubmitHandler<FormInterface> = ({ firstName, lastName, userName, password, email }) => {
-    console.log({ firstName, lastName, userName, password, email });
-    reset();
+  const onSubmit: SubmitHandler<FormInterface> = async ({ firstName, lastName, password, email }) => {
+    const userName = `${firstName.toLowerCase()}${lastName.toLowerCase()}`;
+    const body = {
+      firstName: firstLetterToUpperCase(firstName),
+      lastName: firstLetterToUpperCase(lastName),
+      userName,
+      password,
+      email,
+    };
+    const res = await auth('signup', body);
+    if (res.status >= 400) {
+      setAuthError('User with that email already exists');
+    } else {
+      reset();
+      setTimeout(() => {
+        router.push('/');
+      }, 2000);
+    }
   };
+
   return (
-    <Wrapper>
+    <SignUpWrapper errors={errors} authError={authError}>
+      <h1>Sign Up</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <input type="text" {...register('firstName', { required: true })} />
-        <input type="text" {...register('lastName', { required: true })} />
-        <input type="text" {...register('email', { required: true })} />
-        <input type="password" {...register('password', { required: true })} />
-        <input type="text" {...register('userName', { required: true })} />
-        <button type="submit">Sign Up</button>
+        <label htmlFor="firstName">
+          First Name
+          <input
+            id="firstName"
+            placeholder="John"
+            type="text"
+            {...register('firstName', {
+              onChange: (e) => {
+                setAuthError('');
+              },
+              required: true,
+              minLength: 3,
+            })}
+          />
+        </label>
+        {errors.firstName && (
+          <StyledError margin={-3} padding={12}>
+            {`Min length: 3`}
+          </StyledError>
+        )}
+        <label htmlFor="lastName">
+          Last Name
+          <input
+            id="lastName"
+            placeholder="Smith"
+            type="text"
+            {...register('lastName', { onChange: () => setAuthError(''), required: true, minLength: 3 })}
+          />
+        </label>
+        {errors.lastName && (
+          <StyledError margin={-3} padding={12}>
+            {`Min length: 3`}
+          </StyledError>
+        )}
+        <label htmlFor="email">
+          Email
+          <input
+            id="email"
+            placeholder="example@domain.com"
+            type="email"
+            {...register('email', { onChange: () => setAuthError(''), required: true })}
+          />
+        </label>
+        {errors.email && (
+          <StyledError margin={-3} padding={12}>
+            {`Email is not valid`}
+          </StyledError>
+        )}
+        <label htmlFor="password">
+          Password
+          <input
+            id="password"
+            placeholder="********"
+            type="password"
+            {...register('password', {
+              onChange: (e) => {
+                setAuthError('');
+                let length = e.target.value;
+                if (length === 0) {
+                }
+              },
+              required: true,
+              minLength: 8,
+            })}
+          />
+        </label>
+        {errors.password && (
+          <StyledError margin={-3} padding={12}>
+            {`Min length: 8`}
+          </StyledError>
+        )}
+        {authError && (
+          <StyledError margin={0} padding={0}>
+            {authError}
+          </StyledError>
+        )}
+        <div>
+          <button disabled={!!authError} type="submit">
+            Sign Up
+          </button>
+        </div>
       </form>
-    </Wrapper>
+    </SignUpWrapper>
   );
 };
 
