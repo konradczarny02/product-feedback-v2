@@ -7,6 +7,7 @@ import { StyledError } from '../components/organisms/Forms/CreateForm.styles';
 
 export const Wrapper = styled.div<{ errors: any; authError: string }>`
   width: 90%;
+  max-width: 1024px;
   margin: 50px auto;
   padding: 5%;
   height: 100%;
@@ -18,6 +19,10 @@ export const Wrapper = styled.div<{ errors: any; authError: string }>`
     font-weight: 700;
     color: ${({ theme }) => theme.colors.darkBlue};
     margin: 24px 0;
+
+    @media (min-width: 768px) {
+      font-size: 24px;
+    }
   }
 
   label {
@@ -27,6 +32,10 @@ export const Wrapper = styled.div<{ errors: any; authError: string }>`
     font-size: 13px;
     font-weight: 700;
     color: ${({ theme }) => theme.colors.darkBlue};
+
+    @media (min-width: 768px) {
+      font-size: 15px;
+    }
 
     & > * {
       margin: 12px 0;
@@ -45,10 +54,19 @@ export const Wrapper = styled.div<{ errors: any; authError: string }>`
       &::placeholder {
         font-size: 13px;
         color: ${({ theme }) => theme.colors.gray};
+
+        @media (min-width: 768px) {
+          font-size: 15px;
+        }
       }
 
       &:focus {
         outline: 1px solid ${({ theme }) => theme.colors.blue};
+      }
+
+      @media (min-width: 768px) {
+        font-size: 15px;
+        height: 64px;
       }
     }
 
@@ -91,16 +109,27 @@ export const Wrapper = styled.div<{ errors: any; authError: string }>`
     }
   }
 
+  div {
+    display: flex;
+    justify-content: center;
+  }
+
   button {
     border: none;
     border-radius: 10px;
-    background-color: ${({ theme }) => theme.colors.pink};
+    background-color: ${({ theme, authError }) => (authError ? theme.colors.error : theme.colors.pink)};
     width: 100%;
+    max-width: 150px;
     margin: 24px 0;
     height: 40px;
     font-size: 13px;
     color: ${({ theme }) => theme.colors.white};
     font-weight: 700;
+
+    @media (min-width: 768px) {
+      font-size: 15px;
+      height: 48px;
+    }
   }
 `;
 
@@ -168,7 +197,11 @@ const SignUp = () => {
             {authError}
           </StyledError>
         )}
-        <button type="submit">Sign In</button>
+        <div>
+          <button disabled={!!authError} type="submit">
+            Sign In
+          </button>
+        </div>
       </form>
     </Wrapper>
   );
