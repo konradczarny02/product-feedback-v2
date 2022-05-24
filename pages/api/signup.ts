@@ -4,7 +4,7 @@ import cookie from 'cookie';
 import { NextApiResponse, NextApiRequest } from 'next';
 import prisma from '../../lib/prisma';
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+const signUp = async (req: NextApiRequest, res: NextApiResponse) => {
   const salt = bcrypt.genSaltSync();
   const { email, password, firstName, lastName, userName } = req.body;
 
@@ -49,3 +49,5 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
   res.json(user);
 };
+
+export default signUp;

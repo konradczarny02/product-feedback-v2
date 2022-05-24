@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken';
 import cookie from 'cookie';
 import { NextApiResponse, NextApiRequest } from 'next';
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+const signIn = async (req: NextApiRequest, res: NextApiResponse) => {
   const { email, password } = req.body;
 
   const user = await prisma.user.findUnique({
@@ -43,3 +43,5 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     res.json({ error: 'Email or Password is wrong' });
   }
 };
+
+export default signIn;
