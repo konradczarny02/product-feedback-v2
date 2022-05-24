@@ -2,7 +2,7 @@ import { useState, useEffect, createContext, ReactNode } from 'react';
 import { PropsChildren } from '../types/types';
 import fetcher from '../lib/fetcher';
 
-const AuthContext = createContext<{ isAuthenticated: boolean }>({ isAuthenticated: false });
+export const AuthContext = createContext<{ isAuthenticated: boolean }>({ isAuthenticated: false });
 
 const AuthProvider = ({ children }: PropsChildren) => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
