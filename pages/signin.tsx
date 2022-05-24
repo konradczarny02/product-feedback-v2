@@ -5,12 +5,18 @@ import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { StyledError } from '../components/organisms/Forms/CreateForm.styles';
 
+export const Wrapper = styled.div`
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+`;
+
 export const SignInWrapper = styled.div<{ errors: any; authError: string }>`
   width: 90%;
   max-width: 1024px;
-  margin: 50px auto;
+  margin: auto;
   padding: 5%;
-  height: 100%;
   border-radius: 10px;
   background-color: ${({ theme }) => theme.colors.white};
 
@@ -20,14 +26,20 @@ export const SignInWrapper = styled.div<{ errors: any; authError: string }>`
     color: ${({ theme }) => theme.colors.darkBlue};
     margin: 24px 0;
     text-align: center;
+    flex-basis: 100%;
 
     @media (min-width: 768px) {
       font-size: 24px;
     }
   }
 
+  form {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
   label {
-    width: 100%;
+    flex-basis: 100%;
     display: flex;
     flex-wrap: wrap;
     font-size: 13px;
@@ -36,10 +48,6 @@ export const SignInWrapper = styled.div<{ errors: any; authError: string }>`
 
     @media (min-width: 768px) {
       font-size: 15px;
-    }
-
-    & > * {
-      margin: 12px 0;
     }
 
     input {
@@ -51,6 +59,7 @@ export const SignInWrapper = styled.div<{ errors: any; authError: string }>`
       padding: 16px;
       font-size: 14px;
       color: ${({ theme }) => theme.colors.darkGray};
+      margin: 12px 0;
 
       &::placeholder {
         font-size: 13px;
@@ -112,6 +121,7 @@ export const SignInWrapper = styled.div<{ errors: any; authError: string }>`
   }
 
   div {
+    flex-basis: 100%;
     display: flex;
     justify-content: center;
   }
@@ -168,49 +178,51 @@ const SignUp = () => {
     }
   };
   return (
-    <SignInWrapper errors={errors} authError={authError}>
-      <h1>Sign In</h1>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <label htmlFor="email">
-          Email
-          <input
-            id="email"
-            placeholder="Type your email here"
-            type="email"
-            {...register('email', { onChange: () => setAuthError(''), required: true })}
-          />
-        </label>
-        {errors.email && (
-          <StyledError margin={-3} padding={12}>
-            {errorMessage}
-          </StyledError>
-        )}
-        <label htmlFor="password">
-          Password
-          <input
-            id="password"
-            placeholder="Type your password here"
-            type="password"
-            {...register('password', { onChange: () => setAuthError(''), required: true })}
-          />
-        </label>
-        {errors.password && (
-          <StyledError margin={-3} padding={12}>
-            {errorMessage}
-          </StyledError>
-        )}
-        {authError && (
-          <StyledError margin={0} padding={0}>
-            {authError}
-          </StyledError>
-        )}
-        <div>
-          <button disabled={!!authError} type="submit">
-            Sign In
-          </button>
-        </div>
-      </form>
-    </SignInWrapper>
+    <Wrapper>
+      <SignInWrapper errors={errors} authError={authError}>
+        <h1>Sign In</h1>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <label htmlFor="email">
+            Email
+            <input
+              id="email"
+              placeholder="Type your email here"
+              type="email"
+              {...register('email', { onChange: () => setAuthError(''), required: true })}
+            />
+            {errors.email && (
+              <StyledError margin={-3} padding={12}>
+                {errorMessage}
+              </StyledError>
+            )}
+          </label>
+          <label htmlFor="password">
+            Password
+            <input
+              id="password"
+              placeholder="Type your password here"
+              type="password"
+              {...register('password', { onChange: () => setAuthError(''), required: true })}
+            />
+            {errors.password && (
+              <StyledError margin={-3} padding={12}>
+                {errorMessage}
+              </StyledError>
+            )}
+          </label>
+          {authError && (
+            <StyledError margin={0} padding={0}>
+              {authError}
+            </StyledError>
+          )}
+          <div>
+            <button disabled={!!authError} type="submit">
+              Sign In
+            </button>
+          </div>
+        </form>
+      </SignInWrapper>
+    </Wrapper>
   );
 };
 

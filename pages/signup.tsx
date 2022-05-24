@@ -2,7 +2,7 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import styled from 'styled-components';
 import { StyledError } from '../components/organisms/Forms/CreateForm.styles';
 import { useState } from 'react';
-import { SignInWrapper } from './signin';
+import { SignInWrapper, Wrapper } from './signin';
 import { useRouter } from 'next/router';
 import { auth } from '../lib/mutations';
 
@@ -48,6 +48,20 @@ export const SignUpWrapper = styled(SignInWrapper)`
       }};
     }
   }
+
+  label[for='firstName'] {
+    @media (min-width: 768px) {
+      flex-basis: 49%;
+      flex-wrap: wrap;
+    }
+  }
+
+  label[for='lastName'] {
+    @media (min-width: 768px) {
+      flex-basis: 49%;
+      margin-left: 2%;
+    }
+  }
 `;
 
 interface FormInterface {
@@ -87,92 +101,94 @@ const SignUp = () => {
   };
 
   return (
-    <SignUpWrapper errors={errors} authError={authError}>
-      <h1>Sign Up</h1>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <label htmlFor="firstName">
-          First Name
-          <input
-            id="firstName"
-            placeholder="John"
-            type="text"
-            {...register('firstName', {
-              onChange: (e) => {
-                setAuthError('');
-              },
-              required: true,
-              minLength: 3,
-            })}
-          />
-        </label>
-        {errors.firstName && (
-          <StyledError margin={-3} padding={12}>
-            {`Min length: 3`}
-          </StyledError>
-        )}
-        <label htmlFor="lastName">
-          Last Name
-          <input
-            id="lastName"
-            placeholder="Smith"
-            type="text"
-            {...register('lastName', { onChange: () => setAuthError(''), required: true, minLength: 3 })}
-          />
-        </label>
-        {errors.lastName && (
-          <StyledError margin={-3} padding={12}>
-            {`Min length: 3`}
-          </StyledError>
-        )}
-        <label htmlFor="email">
-          Email
-          <input
-            id="email"
-            placeholder="example@domain.com"
-            type="email"
-            {...register('email', { onChange: () => setAuthError(''), required: true })}
-          />
-        </label>
-        {errors.email && (
-          <StyledError margin={-3} padding={12}>
-            {`Email is not valid`}
-          </StyledError>
-        )}
-        <label htmlFor="password">
-          Password
-          <input
-            id="password"
-            placeholder="********"
-            type="password"
-            {...register('password', {
-              onChange: (e) => {
-                setAuthError('');
-                let length = e.target.value;
-                if (length === 0) {
-                }
-              },
-              required: true,
-              minLength: 8,
-            })}
-          />
-        </label>
-        {errors.password && (
-          <StyledError margin={-3} padding={12}>
-            {`Min length: 8`}
-          </StyledError>
-        )}
-        {authError && (
-          <StyledError margin={0} padding={0}>
-            {authError}
-          </StyledError>
-        )}
-        <div>
-          <button disabled={!!authError} type="submit">
-            Sign Up
-          </button>
-        </div>
-      </form>
-    </SignUpWrapper>
+    <Wrapper>
+      <SignUpWrapper errors={errors} authError={authError}>
+        <h1>Sign Up</h1>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <label htmlFor="firstName">
+            First Name
+            <input
+              id="firstName"
+              placeholder="John"
+              type="text"
+              {...register('firstName', {
+                onChange: (e) => {
+                  setAuthError('');
+                },
+                required: true,
+                minLength: 3,
+              })}
+            />
+            {errors.firstName && (
+              <StyledError margin={-3} padding={12}>
+                {`Min length: 3`}
+              </StyledError>
+            )}
+          </label>
+          <label htmlFor="lastName">
+            Last Name
+            <input
+              id="lastName"
+              placeholder="Smith"
+              type="text"
+              {...register('lastName', { onChange: () => setAuthError(''), required: true, minLength: 3 })}
+            />
+            {errors.lastName && (
+              <StyledError margin={-3} padding={12}>
+                {`Min length: 3`}
+              </StyledError>
+            )}
+          </label>
+          <label htmlFor="email">
+            Email
+            <input
+              id="email"
+              placeholder="example@domain.com"
+              type="email"
+              {...register('email', { onChange: () => setAuthError(''), required: true })}
+            />
+            {errors.email && (
+              <StyledError margin={-3} padding={12}>
+                {`Email is not valid`}
+              </StyledError>
+            )}
+          </label>
+          <label htmlFor="password">
+            Password
+            <input
+              id="password"
+              placeholder="********"
+              type="password"
+              {...register('password', {
+                onChange: (e) => {
+                  setAuthError('');
+                  let length = e.target.value;
+                  if (length === 0) {
+                  }
+                },
+                required: true,
+                minLength: 8,
+              })}
+            />
+            {errors.password && (
+              <StyledError margin={-3} padding={12}>
+                {`Min length: 8`}
+              </StyledError>
+            )}
+          </label>
+          {authError && (
+            <StyledError margin={0} padding={0}>
+              {authError}
+            </StyledError>
+          )}
+          <div>
+            <button disabled={!!authError} type="submit">
+              Sign Up
+            </button>
+          </div>
+        </form>
+      </SignUpWrapper>
+    </Wrapper>
   );
 };
 

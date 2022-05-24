@@ -1,8 +1,7 @@
-import useMe from '../lib/useMe';
+import useCurrent from '../lib/useCurrent';
 
 const User = () => {
-  const { user, isLoading } = useMe();
-
+  const { user, isLoading } = useCurrent();
   return (
     <>
       {(() => {

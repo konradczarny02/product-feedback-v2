@@ -1,11 +1,11 @@
 import fetcher from './fetcher';
 import { useEffect, useState } from 'react';
 
-const useMe = () => {
+const useCurrent = () => {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
-    fetcher('/me')
+    fetcher('/user/current')
       .then((data) => data.json())
       .then((data) => {
         setUser(data);
@@ -16,4 +16,4 @@ const useMe = () => {
   return { user, isLoading };
 };
 
-export default useMe;
+export default useCurrent;

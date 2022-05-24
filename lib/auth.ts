@@ -4,13 +4,13 @@ import { NextApiRequest, NextApiResponse } from 'next';
 
 export const validateRoute = (handler) => {
   return async (req: NextApiRequest, res: NextApiResponse) => {
-    const token = req.cookies.FEEDBACK_ACCESS_TOKEN;
+    const token = req.cookies[process.env.COOKIE];
 
     if (token) {
       let user;
 
       try {
-        const { id } = jwt.verify(token, 'shskjfsk');
+        const { id } = jwt.verify(token, process.env.JWT_SECRET);
         user = await prisma.user.findUnique({
           where: { id },
         });
