@@ -5,13 +5,16 @@ import { GlobalStyles } from '../styles/GlobalStyles';
 import '../styles/fonts.css';
 import store from '../store/store';
 import { Provider } from 'react-redux';
+import AuthProvider from '../providers/AuthProvider';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ThemeProvider theme={theme}>
       <Provider store={store}>
-        <GlobalStyles />
-        <Component {...pageProps} />
+        <AuthProvider>
+          <GlobalStyles />
+          <Component {...pageProps} />
+        </AuthProvider>
       </Provider>
     </ThemeProvider>
   );

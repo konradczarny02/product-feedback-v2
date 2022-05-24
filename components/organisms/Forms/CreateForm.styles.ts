@@ -90,11 +90,8 @@ export const StyledForm = styled.form<{ errors: any }>`
     resize: none;
     font-size: 15px;
     font-weight: 400;
-    @media (min-width: 768px) {
-      height: 96px;
-    }
     outline: ${({ theme, errors }) => {
-      if (errors.description) {
+      if (errors.details) {
         return `1px solid ${theme.colors.error}`;
       } else {
         return `none`;
@@ -102,12 +99,16 @@ export const StyledForm = styled.form<{ errors: any }>`
     }};
     &:focus {
       outline: ${({ theme, errors }) => {
-        if (errors.description) {
+        if (errors.details) {
           return `1px solid ${theme.colors.error}`;
         } else {
           return `1px solid ${theme.colors.blue}`;
         }
       }};
+    }
+
+    @media (min-width: 768px) {
+      height: 96px;
     }
   }
   input[type='submit'] {
@@ -143,11 +144,11 @@ export const StyledForm = styled.form<{ errors: any }>`
   }
 `;
 
-export const StyledError = styled.p<{ margin: number }>`
+export const StyledError = styled.p<{ margin: number; padding: number }>`
   font-size: 14px;
   font-weight: 400;
   color: ${({ theme }) => theme.colors.error};
   margin-top: ${({ margin }) => margin + 'px'};
-  padding-bottom: ${({ margin }) => (margin === 24 ? '10px' : '24px')};
+  padding-bottom: ${({ padding }) => padding + 'px'};
   padding-left: 2px;
 `;

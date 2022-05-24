@@ -4,6 +4,8 @@ import CommentsNumber from '../../atoms/CommentsNumber/CommentsNumber';
 import { StyledSuggestion, StyledDescription } from './Suggestion.styles';
 import { Category as CategoryType } from '../../../types/types';
 import Category from '../../atoms/Category/Category';
+import { useContext } from 'react';
+import { AuthContext } from '../../../providers/AuthProvider';
 
 type SuggestionProps = {
   data: {
@@ -18,10 +20,15 @@ type SuggestionProps = {
 
 const Suggestion = ({ data: { id, title, details, category, upvotes, comments } }: SuggestionProps) => {
   const router = useRouter();
+  const { isAuthenticated } = useContext(AuthContext);
   return (
     <StyledSuggestion
       onClick={() => {
-        router.push(`/suggestion/${id}`);
+        if (isAuthenticated) {
+          router.push(`/suggestion/${id}`);
+        } else {
+          router.push(`/signin`);
+        }
       }}
     >
       <h3>{title}</h3>

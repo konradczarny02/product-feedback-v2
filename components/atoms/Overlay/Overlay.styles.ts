@@ -10,7 +10,7 @@ export const StyledOverlay = styled.div<OverlayProps>`
   position: absolute;
   left: 0;
   top: 72px;
-  height: calc(100vh - 72px);
+  height: calc(100% - 72px);
   z-index: 1;
   visibility: ${({ isOpen }) => (isOpen ? 'visible' : 'hidden')};
   transition: ${({ isOpen }) => (isOpen ? 'visibility 0s' : 'visibility 0s 0.4s')};
