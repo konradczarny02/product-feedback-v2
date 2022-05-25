@@ -72,8 +72,10 @@ const CreateForm = () => {
           {error}
         </StyledError>
       )}
-      <input type="submit" value={buttonValue} />
-      <input type="reset" value="Cancel" />
+      <div>
+        <input type="submit" value={buttonValue} />
+        <input type="reset" value="Cancel" onClick={() => setTimeout(() => router.push('/'), 1000)} />
+      </div>
     </StyledForm>
   );
 };
