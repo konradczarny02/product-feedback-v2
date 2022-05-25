@@ -9,6 +9,16 @@ export const Wrapper = styled.div`
   }
 `;
 
+export const PopUp = styled.div`
+  width: 90%;
+  position: absolute;
+  bottom: 0;
+  left: 5%;
+  border-radius: 10px;
+  border: 2px solid green;
+  padding: 20px;
+`;
+
 const Add = () => {
   return (
     <Wrapper>
