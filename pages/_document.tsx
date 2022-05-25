@@ -7,7 +7,7 @@ const MainDocument = () => {
       <body>
         <Main />
         <NextScript />
-        <div id="modal-root"></div>
+        <div id="modal-root" style={{ overflow: 'hidden' }}></div>
       </body>
     </Html>
   );
