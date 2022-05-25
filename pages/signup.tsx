@@ -1,10 +1,11 @@
 import { useForm, SubmitHandler } from 'react-hook-form';
 import styled from 'styled-components';
 import { StyledError } from '../components/organisms/Forms/CreateForm.styles';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { SignInWrapper, Wrapper } from './signin';
 import { useRouter } from 'next/router';
 import { auth } from '../lib/mutations';
+import { AuthContext } from '../providers/AuthProvider';
 
 const firstLetterToUpperCase = (str) => {
   return `${str[0].toUpperCase()}${str.slice(1)}`;
@@ -73,6 +74,7 @@ interface FormInterface {
 
 const SignUp = () => {
   const [authError, setAuthError] = useState<string>('');
+  const { handleSignIn } = useContext(AuthContext);
   const router = useRouter();
   const {
     register,
@@ -95,6 +97,7 @@ const SignUp = () => {
     } else {
       reset();
       setTimeout(() => {
+        handleSignIn();
         router.push('/');
       }, 2000);
     }

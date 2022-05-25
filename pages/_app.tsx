@@ -6,17 +6,26 @@ import '../styles/fonts.css';
 import store from '../store/store';
 import { Provider } from 'react-redux';
 import AuthProvider from '../providers/AuthProvider';
+import Head from 'next/head';
+import ModalProvider, { ModalContext } from '../providers/ModalProvider';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <ThemeProvider theme={theme}>
-      <Provider store={store}>
-        <AuthProvider>
-          <GlobalStyles />
-          <Component {...pageProps} />
-        </AuthProvider>
-      </Provider>
-    </ThemeProvider>
+    <>
+      <Head>
+        <title>Feedback App</title>
+      </Head>
+      <ThemeProvider theme={theme}>
+        <Provider store={store}>
+          <ModalProvider>
+            <AuthProvider>
+              <GlobalStyles />
+              <Component {...pageProps} />
+            </AuthProvider>
+          </ModalProvider>
+        </Provider>
+      </ThemeProvider>
+    </>
   );
 }
 
