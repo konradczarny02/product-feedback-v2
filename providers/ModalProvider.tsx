@@ -15,7 +15,9 @@ export const ModalContext = createContext<ModalContextInterface>({
 
 const ModalProvider = ({ children }: PropsChildren) => {
   const [isOpen, setModalState] = useState<boolean>(false);
-  const handleModalClose = () => setModalState(false);
+  const handleModalClose = () => {
+    setModalState(false);
+  };
   const handleModalOpen = () => setModalState(true);
   console.log(isOpen);
 

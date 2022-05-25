@@ -2,14 +2,15 @@ import styled from 'styled-components';
 
 export const ModalBackground = styled.div`
   ::before {
-    position: absolute;
     content: '';
+    position: fixed;
     top: 0;
     left: 0;
-    height: 2000px;
+    height: 100%;
     width: 100%;
     opacity: 0.5;
     background-color: #000;
+    z-index: 22;
   }
 `;
 
@@ -17,7 +18,7 @@ export const ModalWrapper = styled.div`
   width: 250px;
   height: 350px;
   border-radius: 10px;
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -27,6 +28,7 @@ export const ModalWrapper = styled.div`
   align-items: center;
   padding: 5%;
   background-color: ${({ theme }) => theme.colors.white};
+  z-index: 222;
 
   a {
     flex-basis: 100%;

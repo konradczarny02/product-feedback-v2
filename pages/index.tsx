@@ -7,6 +7,9 @@ import DesktopNav from '../components/organisms/DesktopNav/DesktopNav';
 import SuggestionsList from '../components/organisms/SuggestionsList/SuggestionsList';
 import prisma from '../lib/prisma';
 import Sort from '../components/organisms/Sort/Sort';
+import { useContext } from 'react';
+import { ModalContext } from '../providers/ModalProvider';
+import Modal from '../components/organisms/Modal/Modal';
 
 export const Wrapper = styled.div`
   @media (min-width: 1440px) {
@@ -19,6 +22,8 @@ export const Wrapper = styled.div`
 `;
 
 const Home = ({ suggestions }) => {
+  const { isOpen } = useContext(ModalContext);
+  console.log(isOpen);
   return (
     <Wrapper>
       <NavigationProvider>
@@ -29,6 +34,7 @@ const Home = ({ suggestions }) => {
       <DesktopNav />
       <Sort />
       <SuggestionsList suggestions={suggestions} />
+      {isOpen ? <Modal /> : null}
     </Wrapper>
   );
 };

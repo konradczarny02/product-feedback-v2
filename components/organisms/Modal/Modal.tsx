@@ -1,15 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { ModalWrapper, ModalBackground } from './Modal.styles';
 import Link from 'next/link';
+import { ModalContext } from '../../../providers/ModalProvider';
 
-type ModalProps = {
-  handleModalOpen: () => void;
-  handleModalClose: () => void;
-};
-
-const Modal = ({ handleModalClose, handleModalOpen }: ModalProps) => {
+const Modal = () => {
   const [isBrowser, setIsBrowser] = useState<boolean>(false);
+  const { handleModalClose } = useContext(ModalContext);
   let modalNode: null | HTMLDivElement = null;
   let modalContainer: null | HTMLDivElement = null;
   useEffect(() => {
@@ -18,8 +15,20 @@ const Modal = ({ handleModalClose, handleModalOpen }: ModalProps) => {
 
   if (isBrowser) {
     modalNode = document.createElement('div');
+    modalNode.style.height = '100%';
     modalContainer = document.getElementById('modal-root') as HTMLDivElement;
   }
+
+  const modalContent = (
+    <ModalBackground onClick={handleModalClose}>
+      <ModalWrapper>
+        <Link href="/signin">Sign In</Link>
+        <p>Or</p>
+        <Link href="/signup">Sign Up</Link>
+        <button onClick={handleModalClose}>Close</button>
+      </ModalWrapper>
+    </ModalBackground>
+  );
 
   useEffect(() => {
     if (modalContainer) modalContainer.appendChild(modalNode);
@@ -29,17 +38,7 @@ const Modal = ({ handleModalClose, handleModalOpen }: ModalProps) => {
   }, [modalNode, modalContainer]);
 
   if (isBrowser) {
-    return createPortal(
-      <ModalBackground>
-        <ModalWrapper>
-          <Link href="/signin">Sign In</Link>
-          <p>Or</p>
-          <Link href="/signup">Sign Up</Link>
-          <button onClick={handleModalClose}>Close</button>
-        </ModalWrapper>
-      </ModalBackground>,
-      modalNode
-    );
+    return createPortal(modalContent, modalNode);
   } else {
     return null;
   }
