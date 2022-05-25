@@ -2,8 +2,9 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import styled from 'styled-components';
 import { auth } from '../lib/mutations';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { StyledError } from '../components/organisms/Forms/CreateForm.styles';
+import { AuthContext } from '../providers/AuthProvider';
 
 export const Wrapper = styled.div`
   width: 100%;
@@ -159,6 +160,7 @@ const errorMessage = `Can't be empty`;
 
 const SignUp = () => {
   const [authError, setAuthError] = useState<string>('');
+  const { handleSignIn } = useContext(AuthContext);
   const router = useRouter();
   const {
     register,
@@ -173,6 +175,7 @@ const SignUp = () => {
     } else {
       reset();
       setTimeout(() => {
+        handleSignIn();
         router.push('/');
       }, 200);
     }

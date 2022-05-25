@@ -23,7 +23,6 @@ export const Wrapper = styled.div`
 
 const Home = ({ suggestions }) => {
   const { isOpen } = useContext(ModalContext);
-  console.log(isOpen);
   return (
     <Wrapper>
       <NavigationProvider>

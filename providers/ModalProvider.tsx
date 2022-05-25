@@ -19,7 +19,6 @@ const ModalProvider = ({ children }: PropsChildren) => {
     setModalState(false);
   };
   const handleModalOpen = () => setModalState(true);
-  console.log(isOpen);
 
   return <ModalContext.Provider value={{ isOpen, handleModalClose, handleModalOpen }}>{children}</ModalContext.Provider>;
 };

@@ -1,5 +1,4 @@
 import { AddButtonWrapper } from './AddButton.styles';
-import Link from 'next/link';
 import { AuthContext } from '../../../providers/AuthProvider';
 import { useContext } from 'react';
 import { ModalContext } from '../../../providers/ModalProvider';
