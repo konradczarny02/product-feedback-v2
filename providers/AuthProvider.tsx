@@ -12,7 +12,6 @@ const AuthProvider = ({ children }: PropsChildren) => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const handleSignIn = () => setIsAuthenticated(true);
   const handleSignOut = () => setIsAuthenticated(false);
-  console.log(isAuthenticated);
 
   useEffect(() => {
     fetcher('/user/current')
