@@ -2,6 +2,9 @@ import { StyledForm, Heading, Title, Description, StyledError } from './CreateFo
 import AddIcon from '../../atoms/AddIcon/AddIcon';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { Category } from '../../../types/types';
+import fetcher from '../../../lib/fetcher';
+import { useState } from 'react';
+import { useRouter } from 'next/router';
 
 const errorMessage = `Can't be empty`;
 
@@ -12,18 +15,31 @@ interface FormInterface {
 }
 
 const CreateForm = () => {
+  const [error, setError] = useState<string>('');
+  const [buttonValue, setButtonValue] = useState<'Add Feedback' | 'Success'>('Add Feedback');
+  const router = useRouter();
   const {
     register,
     formState: { errors },
     handleSubmit,
     reset,
   } = useForm<FormInterface>();
-  const onSubmit: SubmitHandler<FormInterface> = ({ title, details, category }) => {
+  const onSubmit: SubmitHandler<FormInterface> = async ({ title, details, category }) => {
     console.log(title, details, category);
-    reset();
+    const res = await fetcher('/suggestion/add', { title, details, category });
+    if (res.status >= 400) {
+      setError('Suggestion with that title already exists');
+    } else {
+      reset();
+      setButtonValue('Success');
+      setTimeout(() => {
+        setButtonValue('Add Feedback');
+        router.push('/');
+      }, 2000);
+    }
   };
   return (
-    <StyledForm onSubmit={handleSubmit(onSubmit)} errors={errors}>
+    <StyledForm onSubmit={handleSubmit(onSubmit)} errors={errors} submitVal={buttonValue}>
       <AddIcon />
       <Title>Create New Feedback</Title>
       <Heading>Feedback Title</Heading>
@@ -51,7 +67,12 @@ const CreateForm = () => {
           {errorMessage}
         </StyledError>
       )}
-      <input type="submit" value="Add Feedback" />
+      {error && (
+        <StyledError margin={-24} padding={12}>
+          {error}
+        </StyledError>
+      )}
+      <input type="submit" value={buttonValue} />
       <input type="reset" value="Cancel" />
     </StyledForm>
   );

@@ -13,6 +13,7 @@ interface colorsInterface {
   darkerWhite: Color;
   hover: Color;
   error: Color;
+  success: Color;
 }
 
 interface themeInterface {
@@ -33,5 +34,6 @@ export const theme: themeInterface = {
     darkerWhite: '#F7F8FD',
     hover: '#CFD7FF',
     error: '#D73737',
+    success: '#5CEA1F',
   },
 };

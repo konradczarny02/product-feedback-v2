@@ -14,7 +14,6 @@ export const NavigationContext = createContext<NavigationContextI>({
 const NavigationProvider = ({ children }: PropsChildren) => {
   const [isOpen, setIsOpen] = useState(false);
   const handleOpen = () => setIsOpen((prevState) => !prevState);
-  console.log(isOpen);
 
   return <NavigationContext.Provider value={{ isOpen, handleOpen }}>{children}</NavigationContext.Provider>;
 };

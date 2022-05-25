@@ -18,7 +18,7 @@ export const Description = styled.p`
   color: ${({ theme }) => theme.colors.gray};
 `;
 
-export const StyledForm = styled.form<{ errors: any }>`
+export const StyledForm = styled.form<{ errors: any; submitVal: 'Add Feedback' | 'Success' }>`
   height: 720px;
   width: 90%;
   margin: 55px auto;
@@ -119,7 +119,7 @@ export const StyledForm = styled.form<{ errors: any }>`
     color: ${({ theme }) => theme.colors.white};
     font-size: 13px;
     font-weight: 700;
-    background-color: ${({ theme }) => theme.colors.pink};
+    background-color: ${({ theme, submitVal }) => (submitVal === 'Add Feedback' ? theme.colors.pink : theme.colors.success)};
     border: none;
     border-radius: 10px;
     margin-bottom: 16px;
