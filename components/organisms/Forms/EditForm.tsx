@@ -4,6 +4,9 @@ import { Category, Status } from '../../../types/types';
 import { StyledError } from './CreateForm.styles';
 import { StyledForm } from './EditForm.styles';
 import EditIcon from '../../atoms/EditIcon/EditIcon';
+import { useContext, useState } from 'react';
+import { useRouter } from 'next/router';
+import { ModalContext } from '../../../providers/ModalProvider';
 
 interface FormInterface {
   title: string;
@@ -15,15 +18,25 @@ interface FormInterface {
 const errorMessage = `Can't be empty`;
 
 const EditForm = ({ suggestion }) => {
+  const [submitValue, setSubmitValue] = useState<'Save Changes' | 'Changes Saved'>('Save Changes');
+  const { handleModalOpen } = useContext(ModalContext);
+  const router = useRouter();
+  const handleInputChange = () => setSubmitValue('Save Changes');
   const {
     register,
     formState: { errors },
     handleSubmit,
     reset,
   } = useForm<FormInterface>();
-  const onSubmit: SubmitHandler<FormInterface> = async ({ title, details, category, status }) => {};
+  const onSubmit: SubmitHandler<FormInterface> = async ({ title, details, category, status }) => {
+    console.log('hi');
+    const res = await fetcher('/suggestion/edit', { title, details, category, status });
+    if (res.status === 200) {
+      setSubmitValue('Changes Saved');
+    }
+  };
   return (
-    <StyledForm onSubmit={handleSubmit(onSubmit)} errors={errors}>
+    <StyledForm onSubmit={handleSubmit(onSubmit)} errors={errors} submitValue={submitValue}>
       <EditIcon />
       <h2>{`Editing '${suggestion.title}'`}</h2>
       <label htmlFor="title">
@@ -34,9 +47,7 @@ const EditForm = ({ suggestion }) => {
           id="title"
           name="title"
           defaultValue={suggestion.title}
-          {...register('title', {
-            required: true,
-          })}
+          {...register('title', { onChange: handleInputChange, required: true })}
         />
         {errors.title && (
           <StyledError margin={6} padding={0}>
@@ -47,7 +58,12 @@ const EditForm = ({ suggestion }) => {
       <label htmlFor="category">
         <h4>Category</h4>
         <p>Choose a category for your feedback</p>
-        <select id="category" name="category" defaultValue={suggestion.category} {...register('category', { required: true })}>
+        <select
+          id="category"
+          name="category"
+          defaultValue={suggestion.category}
+          {...register('category', { onChange: handleInputChange, required: true })}
+        >
           <option value="Feature">Feature</option>
           <option value="Enhancement">Enhancement</option>
           <option value="UX">UX</option>
@@ -58,7 +74,12 @@ const EditForm = ({ suggestion }) => {
       <label htmlFor="status">
         <h4>Update Status</h4>
         <p>Change feature state</p>
-        <select name="status" id="status" defaultValue={suggestion.status} {...register('status', { required: true })}>
+        <select
+          name="status"
+          id="status"
+          defaultValue={suggestion.status}
+          {...register('status', { onChange: handleInputChange, required: true })}
+        >
           <option value="Planned">Planned</option>
           <option value="In-Progress">In-Progress</option>
           <option value="Live">Live</option>
@@ -67,7 +88,12 @@ const EditForm = ({ suggestion }) => {
       <label htmlFor="details">
         <h4>Feedback Detail</h4>
         <p>Include any specific comments on what should be improved, added, etc.</p>
-        <textarea id="details" name="details" defaultValue={suggestion.details} {...register('details', { required: true })} />
+        <textarea
+          id="details"
+          name="details"
+          defaultValue={suggestion.details}
+          {...register('details', { onChange: handleInputChange, required: true })}
+        />
         {errors.details && (
           <StyledError margin={6} padding={0}>
             {errorMessage}
@@ -75,9 +101,24 @@ const EditForm = ({ suggestion }) => {
         )}
       </label>
       <div>
-        <button type="submit">Save Changes</button>
-        <button type="reset">Cancel</button>
-        <button>Delete</button>
+        <button type="submit">{submitValue}</button>
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            router.push(`/suggestion/${suggestion.id}`);
+          }}
+        >
+          Cancel
+        </button>
+        <button
+          onClick={async (e) => {
+            e.preventDefault();
+            const res = await fetcher('/suggestion/delete', { title: suggestion.title });
+            setTimeout(() => router.push('/'), 1000);
+          }}
+        >
+          Delete
+        </button>
       </div>
     </StyledForm>
   );

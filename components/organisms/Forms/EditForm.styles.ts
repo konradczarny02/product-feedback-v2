@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const StyledForm = styled.form<{ errors: any }>`
+export const StyledForm = styled.form<{ errors: any; submitValue: 'Save Changes' | 'Changes Saved' }>`
   position: relative;
   width: 100%;
   margin-top: 55px;
@@ -98,7 +98,8 @@ export const StyledForm = styled.form<{ errors: any }>`
     }
 
     button:first-child {
-      background-color: ${({ theme }) => theme.colors.pink};
+      background-color: ${({ theme, submitValue }) =>
+        submitValue === 'Save Changes' ? theme.colors.pink : theme.colors.success};
 
       @media (min-width: 768px) {
         flex-basis: auto;

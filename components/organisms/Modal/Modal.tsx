@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { ModalWrapper, ModalBackground } from './Modal.styles';
+import { ModalWrapper, ModalBackground, CloseButton, SignInLink, SignUpLink } from './Modal.styles';
 import Link from 'next/link';
 import { ModalContext } from '../../../providers/ModalProvider';
 
@@ -22,10 +22,13 @@ const Modal = () => {
   const modalContent = (
     <ModalBackground onClick={handleModalClose}>
       <ModalWrapper>
-        <Link href="/signin">Sign In</Link>
-        <p>Or</p>
-        <Link href="/signup">Sign Up</Link>
-        <button onClick={handleModalClose}>Close</button>
+        <Link href="/signin" passHref>
+          <SignInLink>Sign In</SignInLink>
+        </Link>
+        <Link href="/signup" passHref>
+          <SignUpLink>Sign Up</SignUpLink>
+        </Link>
+        <CloseButton onClick={handleModalClose}>Close</CloseButton>
       </ModalWrapper>
     </ModalBackground>
   );
