@@ -3,6 +3,10 @@ import styled from 'styled-components';
 export const ButtonWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
+
+  button {
+    cursor: pointer;
+  }
 `;
 
 export const FormWrapper = styled.form<{ isTooLong: boolean }>`

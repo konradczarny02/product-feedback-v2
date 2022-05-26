@@ -30,4 +30,8 @@ export const GlobalStyles = createGlobalStyle`
   a, input, button, textarea, select {
     font-family: 'Jost', sans-serif;
   }
+  
+  select {
+    cursor: pointer;
+  }
 `;

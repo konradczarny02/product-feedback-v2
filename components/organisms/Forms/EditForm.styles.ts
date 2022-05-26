@@ -92,6 +92,7 @@ export const StyledForm = styled.form<{ errors: any; submitValue: 'Save Changes'
       color: ${({ theme }) => theme.colors.white};
       height: 40px;
       padding: 0 24px;
+      cursor: pointer;
       @media (min-width: 768px) {
         margin-top: 0;
       }

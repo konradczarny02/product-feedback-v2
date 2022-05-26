@@ -13,4 +13,5 @@ export const AddButtonWrapper = styled.a`
   border: none;
   border-radius: 10px;
   text-decoration: none;
+  cursor: pointer;
 `;

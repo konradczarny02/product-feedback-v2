@@ -153,6 +153,10 @@ export const StyledForm = styled.form<{ errors: any; submitVal: 'Add Feedback' |
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-end;
+
+    input {
+      cursor: pointer;
+    }
   }
 `;
 

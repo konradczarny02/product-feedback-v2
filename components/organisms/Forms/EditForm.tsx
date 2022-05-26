@@ -103,16 +103,16 @@ const EditForm = ({ suggestion }) => {
       <div>
         <button type="submit">{submitValue}</button>
         <button
+          type="reset"
           onClick={(e) => {
-            e.preventDefault();
             router.push(`/suggestion/${suggestion.id}`);
           }}
         >
           Cancel
         </button>
         <button
+          type="button"
           onClick={async (e) => {
-            e.preventDefault();
             const res = await fetcher('/suggestion/delete', { title: suggestion.title });
             setTimeout(() => router.push('/'), 1000);
           }}
