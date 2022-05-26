@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 
 export const StyledReturn = styled.a`
-  margin-left: 5%;
-  padding-top: 32px;
   text-decoration: none;
   display: flex;
   align-items: center;

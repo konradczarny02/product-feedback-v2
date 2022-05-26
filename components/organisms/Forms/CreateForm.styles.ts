@@ -20,9 +20,9 @@ export const Description = styled.p`
 
 export const StyledForm = styled.form<{ errors: any; submitVal: 'Add Feedback' | 'Success' }>`
   height: 720px;
-  width: 90%;
+  width: 100%;
+  padding: 5%;
   margin: 55px auto;
-  padding: 24px;
   background-color: ${({ theme }) => theme.colors.white};
   border-radius: 10px;
   display: flex;
@@ -123,8 +123,12 @@ export const StyledForm = styled.form<{ errors: any; submitVal: 'Add Feedback' |
     border: none;
     border-radius: 10px;
     margin-bottom: 16px;
+    flex-basis: 100%;
     @media (min-width: 768px) {
-      width: 150px;
+      padding: 0 24px;
+      flex-basis: auto;
+      order: 2;
+      margin-left: 16px;
     }
   }
   input[type='reset'] {
@@ -138,9 +142,17 @@ export const StyledForm = styled.form<{ errors: any; submitVal: 'Add Feedback' |
     background-color: ${({ theme }) => theme.colors.darkGray};
     border: none;
     border-radius: 10px;
+    flex-basis: 100%;
     @media (min-width: 768px) {
-      width: 96px;
+      padding: 0 24px;
+      flex-basis: auto;
     }
+  }
+
+  div:last-child {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
   }
 `;
 

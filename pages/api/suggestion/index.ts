@@ -1,7 +1,7 @@
 import prisma from '../../../lib/prisma';
 import { NextApiRequest, NextApiResponse } from 'next';
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+const getSuggestions = async (req: NextApiRequest, res: NextApiResponse) => {
   const suggestions = await prisma.suggestion.findMany({});
 
   if (suggestions) {
@@ -12,3 +12,5 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     res.json({ error: 'No suggestions found' });
   }
 };
+
+export default getSuggestions;

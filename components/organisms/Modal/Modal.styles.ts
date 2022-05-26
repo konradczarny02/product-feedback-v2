@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Link from 'next/link';
 
 export const ModalBackground = styled.div`
   ::before {
@@ -29,27 +30,45 @@ export const ModalWrapper = styled.div`
   padding: 5%;
   background-color: ${({ theme }) => theme.colors.white};
   z-index: 222;
+`;
 
-  a {
-    flex-basis: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    border-radius: 10px;
-    background-color: ${({ theme }) => theme.colors.pink};
-    font-size: 13px;
-    font-weight: 700;
-    color: ${({ theme }) => theme.colors.white};
-    height: 40px;
-    transition: transform 0.2s ease-in-out;
+export const SignInLink = styled.a`
+  flex-basis: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  border-radius: 10px;
+  background-color: ${({ theme }) => theme.colors.pink};
+  font-size: 13px;
+  font-weight: 700;
+  color: ${({ theme }) => theme.colors.white};
+  height: 40px;
+  transition: transform 0.2s ease-in-out;
 
-    &:hover {
-      transform: scale(1.1);
-    }
+  &:hover {
+    transform: scale(1.1);
   }
+`;
 
-  a:nth-child(3) {
-    background-color: ${({ theme }) => theme.colors.blue};
-  }
+export const SignUpLink = styled(SignInLink)`
+  background-color: ${({ theme }) => theme.colors.blue};
+`;
+
+export const CloseButton = styled.button`
+  flex-basis: 100%;
+  display: flex;
+  height: 40px;
+  justify-content: center;
+  align-items: center;
+  background-color: ${({ theme }) => theme.colors.darkBlue};
+  border-radius: 10px;
+  border: none;
+  font-size: 13px;
+  font-weight: 700;
+  color: ${({ theme }) => theme.colors.white};
+`;
+
+export const DeleteButton = styled(CloseButton)`
+  background-color: ${({ theme }) => theme.colors.error};
 `;
