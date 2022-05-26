@@ -1,7 +1,7 @@
 import prisma from '../../../lib/prisma';
 import { NextApiRequest, NextApiResponse } from 'next';
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+const getSuggestionById = async (req: NextApiRequest, res: NextApiResponse) => {
   const { id } = req.query;
   const suggestion = await prisma.suggestion.findUnique({
     where: {
@@ -17,3 +17,5 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     res.json(suggestion);
   }
 };
+
+export default getSuggestionById;

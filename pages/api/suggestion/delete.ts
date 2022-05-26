@@ -1,7 +1,7 @@
 import prisma from '../../../lib/prisma';
 import { NextApiRequest, NextApiResponse } from 'next';
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+const deleteSuggestion = async (req: NextApiRequest, res: NextApiResponse) => {
   const { title } = req.body;
 
   const deleted = await prisma.suggestion.delete({
@@ -18,3 +18,5 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     res.json(deleted);
   }
 };
+
+export default deleteSuggestion;

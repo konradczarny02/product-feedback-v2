@@ -1,7 +1,7 @@
 import prisma from '../../../lib/prisma';
 import { NextApiRequest, NextApiResponse } from 'next';
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+const addSuggestion = async (req: NextApiRequest, res: NextApiResponse) => {
   const { title, details, category } = req.body;
 
   const result = await prisma.suggestion.create({
@@ -23,3 +23,5 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     res.json({ error: 'Not able to add new suggestion' });
   }
 };
+
+export default addSuggestion;
