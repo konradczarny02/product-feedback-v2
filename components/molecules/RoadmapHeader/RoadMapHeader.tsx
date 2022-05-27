@@ -1,4 +1,4 @@
-import { RoadmapHeaderWrapper } from './Roadmap.styles';
+import { RoadmapHeaderWrapper } from './RoadmapHeader.styles';
 import ReturnHome from '../../atoms/ReturnHome/ReturnHome';
 import AddButton from '../../atoms/AddButton/AddButton';
 

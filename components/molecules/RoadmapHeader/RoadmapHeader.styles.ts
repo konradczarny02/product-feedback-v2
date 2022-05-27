@@ -6,6 +6,7 @@ export const RoadmapHeaderWrapper = styled.header`
   background-color: ${({ theme }) => theme.colors.darkBlue};
   display: flex;
   justify-content: space-between;
+  margin-bottom: 24px;
 
   div:first-child {
     display: flex;

@@ -1,5 +1,6 @@
 import prisma from '../lib/prisma';
 import RoadMapHeader from '../components/molecules/RoadmapHeader/RoadMapHeader';
+import RoadmapNavigation from '../components/molecules/RoadmapNavigation/RoadmapNavigation';
 
 const Roadmap = ({ suggestions }) => {
   const filterArr = (arr, filterName) => {
@@ -9,7 +10,12 @@ const Roadmap = ({ suggestions }) => {
   const planned = filterArr(suggestions, 'Planned');
   const progress = filterArr(suggestions, 'In-Progress');
   console.log(live, planned, progress);
-  return <RoadMapHeader />;
+  return (
+    <>
+      <RoadMapHeader />
+      <RoadmapNavigation />
+    </>
+  );
 };
 
 export const getServerSideProps = async () => {
