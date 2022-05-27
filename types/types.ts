@@ -9,3 +9,15 @@ export type PropsChildren = {
 export type Category = 'Bug' | 'Enhancement' | 'UX' | 'UI' | 'Feature';
 
 export type Status = 'Planned' | 'In-Progress' | 'Live';
+
+export interface suggestionResponse {
+  id: number;
+  category: Category;
+  createdAt: Date;
+  details: string;
+  title: string;
+  updateAt: Date;
+  upvotes: number;
+}
+
+export type StatusDescription = 'Features currently being developed' | 'Ideas prioritized for research' | 'Released features';
