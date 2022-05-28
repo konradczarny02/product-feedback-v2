@@ -9,7 +9,7 @@ export const RoadmapWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
-  border-radius: 10px;
+  border-radius: 8px;
   h3 {
     flex-basis: 45%;
     height: 26px;

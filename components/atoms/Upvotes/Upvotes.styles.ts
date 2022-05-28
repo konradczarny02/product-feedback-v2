@@ -4,7 +4,7 @@ export const StyledUpvotes = styled.div`
   width: 72px;
   height: 32px;
   padding: 0 14px;
-  border-radius: 12px;
+  border-radius: 8px;
   display: flex;
   justify-content: space-between;
   align-items: center;

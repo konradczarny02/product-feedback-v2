@@ -18,7 +18,7 @@ export const SignInWrapper = styled.div<{ errors: any; authError: string }>`
   max-width: 1024px;
   margin: auto;
   padding: 5%;
-  border-radius: 10px;
+  border-radius: 8px;
   background-color: ${({ theme }) => theme.colors.white};
 
   h1 {
@@ -54,7 +54,7 @@ export const SignInWrapper = styled.div<{ errors: any; authError: string }>`
     input {
       flex-basis: 100%;
       height: 48px;
-      border-radius: 10px;
+      border-radius: 8px;
       background-color: ${({ theme }) => theme.colors.darkerWhite};
       border: none;
       padding: 16px;
@@ -129,7 +129,7 @@ export const SignInWrapper = styled.div<{ errors: any; authError: string }>`
 
   button {
     border: none;
-    border-radius: 10px;
+    border-radius: 8px;
     background-color: ${({ theme, authError }) => (authError ? theme.colors.error : theme.colors.pink)};
     width: 100%;
     max-width: 150px;

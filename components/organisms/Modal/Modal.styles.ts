@@ -16,9 +16,9 @@ export const ModalBackground = styled.div`
 `;
 
 export const ModalWrapper = styled.div`
-  width: 250px;
+  width: 30%;
   height: 350px;
-  border-radius: 10px;
+  border-radius: 8px;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -38,7 +38,7 @@ export const SignInLink = styled.a`
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  border-radius: 10px;
+  border-radius: 8px;
   background-color: ${({ theme }) => theme.colors.pink};
   font-size: 13px;
   font-weight: 700;
@@ -62,11 +62,16 @@ export const CloseButton = styled.button`
   justify-content: center;
   align-items: center;
   background-color: ${({ theme }) => theme.colors.darkBlue};
-  border-radius: 10px;
+  border-radius: 8px;
   border: none;
   font-size: 13px;
   font-weight: 700;
   color: ${({ theme }) => theme.colors.white};
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.1);
+  }
 `;
 
 export const DeleteButton = styled(CloseButton)`

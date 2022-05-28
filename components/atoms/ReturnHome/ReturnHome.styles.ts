@@ -12,5 +12,10 @@ export const StyledReturn = styled.a`
     font-size: 13px;
     font-weight: 700;
     color: ${({ theme }) => theme.colors.gray};
+
+    &:hover {
+      text-decoration: underline;
+      text-underline-color: ${({ theme }) => theme.colors.gray};
+    }
   }
 `;
