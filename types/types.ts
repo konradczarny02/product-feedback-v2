@@ -18,6 +18,8 @@ export interface suggestionResponse {
   title: string;
   updateAt: Date;
   upvotes: number;
+  status: Status;
+  comments?: string[];
 }
 
 export type StatusDescription = 'Features currently being developed' | 'Ideas prioritized for research' | 'Released features';

@@ -15,6 +15,11 @@ export const RoadmapHeaderWrapper = styled.header`
 
     p {
       color: ${({ theme }) => theme.colors.white};
+
+      &:hover {
+        text-decoration: underline;
+        text-decoration-color: ${({ theme }) => theme.colors.white};
+      }
     }
 
     path {
@@ -29,7 +34,7 @@ export const RoadmapHeaderWrapper = styled.header`
   }
 
   @media (min-width: 768px) {
-    border-radius: 10px;
+    border-radius: 8px;
     width: 90%;
     margin: 32px auto;
     max-width: 1000px;

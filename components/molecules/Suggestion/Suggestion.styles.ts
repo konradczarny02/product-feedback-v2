@@ -4,7 +4,7 @@ export const StyledSuggestion = styled.li`
   width: 100%;
   padding: 24px;
   background-color: ${({ theme }) => theme.colors.white};
-  border-radius: 10px;
+  border-radius: 8px;
   display: flex;
   flex-wrap: wrap;
   margin: 16px 0 0;

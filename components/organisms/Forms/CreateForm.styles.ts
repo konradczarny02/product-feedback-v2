@@ -24,7 +24,7 @@ export const StyledForm = styled.form<{ errors: any; submitVal: 'Add Feedback' |
   padding: 5%;
   margin: 55px auto;
   background-color: ${({ theme }) => theme.colors.white};
-  border-radius: 10px;
+  border-radius: 8px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -42,7 +42,7 @@ export const StyledForm = styled.form<{ errors: any; submitVal: 'Add Feedback' |
     height: 48px;
     background-color: ${({ theme }) => theme.colors.darkerWhite};
     border: none;
-    border-radius: 10px;
+    border-radius: 8px;
     padding: 12px 24px;
     margin-bottom: 24px;
     color: ${({ theme }) => theme.colors.darkBlue};
@@ -70,7 +70,7 @@ export const StyledForm = styled.form<{ errors: any; submitVal: 'Add Feedback' |
     height: 48px;
     background-color: ${({ theme }) => theme.colors.darkerWhite};
     border: none;
-    border-radius: 10px;
+    border-radius: 8px;
     padding: 12px 24px;
     margin-bottom: 24px;
     color: ${({ theme }) => theme.colors.darkBlue};
@@ -85,7 +85,7 @@ export const StyledForm = styled.form<{ errors: any; submitVal: 'Add Feedback' |
     margin-bottom: 40px;
     padding: 12px 24px;
     background-color: ${({ theme }) => theme.colors.darkerWhite};
-    border-radius: 10px;
+    border-radius: 8px;
     border: none;
     resize: none;
     font-size: 15px;
@@ -121,7 +121,7 @@ export const StyledForm = styled.form<{ errors: any; submitVal: 'Add Feedback' |
     font-weight: 700;
     background-color: ${({ theme, submitVal }) => (submitVal === 'Add Feedback' ? theme.colors.pink : theme.colors.success)};
     border: none;
-    border-radius: 10px;
+    border-radius: 8px;
     margin-bottom: 16px;
     flex-basis: 100%;
     @media (min-width: 768px) {
@@ -141,7 +141,7 @@ export const StyledForm = styled.form<{ errors: any; submitVal: 'Add Feedback' |
     font-weight: 700;
     background-color: ${({ theme }) => theme.colors.darkGray};
     border: none;
-    border-radius: 10px;
+    border-radius: 8px;
     flex-basis: 100%;
     @media (min-width: 768px) {
       padding: 0 24px;

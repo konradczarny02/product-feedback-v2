@@ -7,10 +7,14 @@ export const EditWrapper = styled.a`
   font-size: 13px;
   font-weight: 700;
   color: ${({ theme }) => theme.colors.white};
-  border-radius: 10px;
+  border-radius: 8px;
   border: none;
   width: 120px;
   display: flex;
   justify-content: center;
   align-items: center;
+
+  &:hover {
+    opacity: 0.9;
+  }
 `;

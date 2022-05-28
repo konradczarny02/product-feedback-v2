@@ -1,6 +1,7 @@
-import { Wrapper, ListsWrapper } from './RoadmapList.styles';
+import { Wrapper, ListsWrapper, StatusDesc, StatusInfo } from './RoadmapList.styles';
 import { Status, StatusDescription, suggestionResponse } from '../../../types/types';
 import { useEffect, useState } from 'react';
+import RoadmapSuggestion from '../../molecules/RoadmapSuggestion/RoadmapSuggestion';
 
 type Props = {
   plannedSuggestions: suggestionResponse[];
@@ -47,22 +48,22 @@ const RoadmapList = ({ plannedSuggestions, inProgressSuggestions, liveSuggestion
 
   return (
     <Wrapper>
-      <h2>{`${active} (${number})`}</h2>
-      <p>{description}</p>
+      <StatusInfo>{`${active} (${number})`}</StatusInfo>
+      <StatusDesc>{description}</StatusDesc>
       <ListsWrapper active={active}>
         <ul>
           {plannedSuggestions.map((suggestion) => (
-            <li key={suggestion.id}>{suggestion.title}</li>
+            <RoadmapSuggestion key={suggestion.id} data={suggestion} />
           ))}
         </ul>
         <ul>
           {inProgressSuggestions.map((suggestion) => (
-            <li key={suggestion.id}>{suggestion.title}</li>
+            <RoadmapSuggestion key={suggestion.id} data={suggestion} />
           ))}
         </ul>
         <ul>
           {liveSuggestions.map((suggestion) => (
-            <li key={suggestion.id}>{suggestion.title}</li>
+            <RoadmapSuggestion key={suggestion.id} data={suggestion} />
           ))}
         </ul>
       </ListsWrapper>

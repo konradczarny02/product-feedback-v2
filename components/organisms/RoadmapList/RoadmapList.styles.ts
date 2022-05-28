@@ -16,45 +16,75 @@ export const Wrapper = styled.div`
 
 export const ListsWrapper = styled.div<{ active: Status }>`
   ul {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: flex-start;
     flex-wrap: wrap;
     list-style: none;
+    grid-template-rows: repeat(auto-fill, 230px);
+    row-gap: 24px;
 
-    li {
-      flex-basis: 100%;
-      background-color: ${({ theme }) => theme.colors.white};
-      padding: 5%;
-      border-radius: 10px;
-      border-top: ${({ theme, active }) => {
-        if (active === 'Planned') {
-          return `6px solid ${theme.colors.orange}`;
-        } else if (active === 'In-Progress') {
-          return `6px solid ${theme.colors.pink}`;
-        } else {
-          return `6px solid ${theme.colors.lightBlue}`;
-        }
-      }};
+    @media (min-width: 768px) {
+      grid-template-rows: repeat(auto-fill, 250px);
+      row-gap: 10px;
+    }
+
+    @media (min-width: 1440px) {
+      grid-template-rows: repeat(auto-fill, 270px);
     }
   }
 
   ul:nth-child(1) {
-    display: ${({ active }) => (active === 'Planned' ? 'flex' : 'none')};
+    display: ${({ active }) => (active === 'Planned' ? 'grid' : 'none')};
+
+    li {
+      border-top: ${({ theme }) => `6px solid ${theme.colors.orange}`};
+    }
   }
   ul:nth-child(2) {
-    display: ${({ active }) => (active === 'In-Progress' ? 'flex' : 'none')};
+    display: ${({ active }) => (active === 'In-Progress' ? 'grid' : 'none')};
+
+    li {
+      border-top: ${({ theme }) => `6px solid ${theme.colors.pink}`};
+    }
   }
   ul:nth-child(3) {
-    display: ${({ active }) => (active === 'Live' ? 'flex' : 'none')};
+    display: ${({ active }) => (active === 'Live' ? 'grid' : 'none')};
+
+    li {
+      border-top: ${({ theme }) => `6px solid ${theme.colors.lightBlue}`};
+    }
   }
 
   @media (min-width: 768px) {
     ul:nth-child(1),
     ul:nth-child(2),
     ul:nth-child(3) {
-      display: flex;
+      display: grid;
     }
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
     grid-gap: 10px;
+    grid-template-columns: repeat(3, 1fr);
+  }
+`;
+
+export const StatusInfo = styled.h2`
+  font-size: 18px;
+  font-weight: 700;
+  color: ${({ theme }) => theme.colors.darkBlue};
+
+  @media (min-width: 768px) {
+    display: none;
+  }
+`;
+
+export const StatusDesc = styled.p`
+  font-size: 13px;
+  font-weight: 400;
+  margin-bottom: 24px;
+  color: ${({ theme }) => theme.colors.darkGray};
+
+  @media (min-width: 768px) {
+    display: none;
   }
 `;

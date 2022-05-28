@@ -11,7 +11,11 @@ export const AddButtonWrapper = styled.a`
   color: ${({ theme }) => theme.colors.white};
   background-color: ${({ theme }) => theme.colors.pink};
   border: none;
-  border-radius: 10px;
+  border-radius: 8px;
   text-decoration: none;
   cursor: pointer;
+
+  &:hover {
+    opacity: 0.9;
+  }
 `;

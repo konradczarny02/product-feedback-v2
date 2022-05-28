@@ -7,7 +7,7 @@ export const StyledForm = styled.form<{ errors: any; submitValue: 'Save Changes'
   display: flex;
   flex-wrap: wrap;
   padding: 5%;
-  border-radius: 10px;
+  border-radius: 8px;
   background-color: ${({ theme }) => theme.colors.white};
 
   h2 {
@@ -39,7 +39,7 @@ export const StyledForm = styled.form<{ errors: any; submitValue: 'Save Changes'
   select {
     height: 48px;
     padding: 15px;
-    border-radius: 10px;
+    border-radius: 8px;
     width: 100%;
     background-color: ${({ theme }) => theme.colors.darkerWhite};
     border: none;
@@ -63,7 +63,7 @@ export const StyledForm = styled.form<{ errors: any; submitValue: 'Save Changes'
     border: none;
     height: 120px;
     padding: 15px;
-    border-radius: 10px;
+    border-radius: 8px;
     margin-bottom: ${({ errors }) => (errors.details ? '0' : '32px')};
     outline: ${({ theme, errors }) => (errors.details ? `1px solid ${theme.colors.error}` : `none`)};
 
@@ -85,7 +85,7 @@ export const StyledForm = styled.form<{ errors: any; submitValue: 'Save Changes'
     button {
       flex-basis: 100%;
       margin: 8px 0;
-      border-radius: 10px;
+      border-radius: 8px;
       border: none;
       font-size: 13px;
       font-weight: 700;

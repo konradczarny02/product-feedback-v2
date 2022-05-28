@@ -13,7 +13,7 @@ export const FormWrapper = styled.form<{ isTooLong: boolean }>`
   width: 100%;
   margin-top: 24px;
   padding: 24px;
-  border-radius: 10px;
+  border-radius: 8px;
   background-color: ${({ theme }) => theme.colors.white};
   display: flex;
   flex-wrap: wrap;
@@ -30,7 +30,7 @@ export const FormWrapper = styled.form<{ isTooLong: boolean }>`
     resize: none;
     background-color: ${({ theme }) => theme.colors.darkerWhite};
     border: none;
-    border-radius: 10px;
+    border-radius: 8px;
     flex-basis: 100%;
     height: 80px;
     margin: 12px 0;
@@ -65,7 +65,7 @@ export const FormWrapper = styled.form<{ isTooLong: boolean }>`
       height: 40px;
       background: ${({ theme }) => theme.colors.pink};
       border: none;
-      border-radius: 10px;
+      border-radius: 8px;
       font-weight: 700;
       font-size: 13px;
       color: ${({ theme }) => theme.colors.darkerWhite};

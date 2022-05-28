@@ -4,7 +4,7 @@ export const FiltersWrapper = styled.div`
   width: 230px;
   height: 180px;
   background-color: ${({ theme }) => theme.colors.white};
-  border-radius: 10px;
+  border-radius: 8px;
   margin-top: 24px;
   padding: 24px;
   display: flex;

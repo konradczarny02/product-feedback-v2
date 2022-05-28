@@ -34,7 +34,7 @@ export const SortWrapper = styled.div`
     height: 72px;
     width: 90%;
     max-width: 900px;
-    border-radius: 10px;
+    border-radius: 8px;
     margin: 40px auto 24px;
     justify-content: flex-start;
     span {
