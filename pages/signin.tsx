@@ -5,6 +5,16 @@ import { useRouter } from 'next/router';
 import { useContext, useState } from 'react';
 import { StyledError } from '../components/organisms/Forms/CreateForm.styles';
 import { AuthContext } from '../providers/AuthProvider';
+import Link from 'next/link';
+
+export const LinkWrapper = styled.p`
+  color: ${({ theme }) => theme.colors.darkBlue};
+
+  a {
+    color: ${({ theme }) => theme.colors.pink};
+    text-decoration: none;
+  }
+`;
 
 export const Wrapper = styled.div`
   width: 100%;
@@ -224,6 +234,9 @@ const SignUp = () => {
             </button>
           </div>
         </form>
+        <LinkWrapper>
+          Not a user? <Link href="signup">Sign Up</Link>
+        </LinkWrapper>
       </SignInWrapper>
     </Wrapper>
   );

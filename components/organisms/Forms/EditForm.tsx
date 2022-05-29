@@ -7,6 +7,7 @@ import EditIcon from '../../atoms/EditIcon/EditIcon';
 import { useContext, useState } from 'react';
 import { useRouter } from 'next/router';
 import { ModalContext } from '../../../providers/ModalProvider';
+import { suggestionResponse } from '../../../types/types';
 
 interface FormInterface {
   title: string;
@@ -15,9 +16,13 @@ interface FormInterface {
   category: Category;
 }
 
+type Props = {
+  suggestion: suggestionResponse;
+};
+
 const errorMessage = `Can't be empty`;
 
-const EditForm = ({ suggestion }) => {
+const EditForm = ({ suggestion }: Props) => {
   const [submitValue, setSubmitValue] = useState<'Save Changes' | 'Changes Saved'>('Save Changes');
   const { handleModalOpen } = useContext(ModalContext);
   const router = useRouter();
@@ -110,13 +115,7 @@ const EditForm = ({ suggestion }) => {
         >
           Cancel
         </button>
-        <button
-          type="button"
-          onClick={async (e) => {
-            const res = await fetcher('/suggestion/delete', { title: suggestion.title });
-            setTimeout(() => router.push('/'), 1000);
-          }}
-        >
+        <button type="button" onClick={handleModalOpen}>
           Delete
         </button>
       </div>
