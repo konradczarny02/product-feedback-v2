@@ -10,6 +10,7 @@ import Sort from '../components/organisms/Sort/Sort';
 import { useContext } from 'react';
 import { ModalContext } from '../providers/ModalProvider';
 import Modal from '../components/organisms/Modal/Modal';
+import SignModal from '../components/molecules/ModalContent/SignModal';
 
 export const Wrapper = styled.div`
   @media (min-width: 1440px) {
@@ -33,7 +34,11 @@ const Home = ({ suggestions }) => {
       <DesktopNav />
       <Sort />
       <SuggestionsList suggestions={suggestions} />
-      {isOpen ? <Modal /> : null}
+      {isOpen ? (
+        <Modal>
+          <SignModal />
+        </Modal>
+      ) : null}
     </Wrapper>
   );
 };

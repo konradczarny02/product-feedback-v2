@@ -2,10 +2,11 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import styled from 'styled-components';
 import { StyledError } from '../components/organisms/Forms/CreateForm.styles';
 import { useContext, useState } from 'react';
-import { SignInWrapper, Wrapper } from './signin';
+import { LinkWrapper, SignInWrapper, Wrapper } from './signin';
 import { useRouter } from 'next/router';
 import { auth } from '../lib/mutations';
 import { AuthContext } from '../providers/AuthProvider';
+import Link from 'next/link';
 
 const firstLetterToUpperCase = (str) => {
   return `${str[0].toUpperCase()}${str.slice(1)}`;
@@ -190,6 +191,9 @@ const SignUp = () => {
             </button>
           </div>
         </form>
+        <LinkWrapper>
+          Already a user? <Link href="signin">Sign In</Link>
+        </LinkWrapper>
       </SignUpWrapper>
     </Wrapper>
   );

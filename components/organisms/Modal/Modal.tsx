@@ -1,10 +1,10 @@
 import { useContext, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { ModalWrapper, ModalBackground, CloseButton, SignInLink, SignUpLink } from './Modal.styles';
-import Link from 'next/link';
+import { ModalWrapper, ModalBackground, CloseButton } from './Modal.styles';
 import { ModalContext } from '../../../providers/ModalProvider';
+import { PropsChildren } from '../../../types/types';
 
-const Modal = () => {
+const Modal = ({ children }: PropsChildren) => {
   const [isBrowser, setIsBrowser] = useState<boolean>(false);
   const { handleModalClose } = useContext(ModalContext);
   let modalNode: null | HTMLDivElement = null;
@@ -21,15 +21,7 @@ const Modal = () => {
 
   const modalContent = (
     <ModalBackground onClick={handleModalClose}>
-      <ModalWrapper>
-        <Link href="/signin" passHref>
-          <SignInLink>Sign In</SignInLink>
-        </Link>
-        <Link href="/signup" passHref>
-          <SignUpLink>Sign Up</SignUpLink>
-        </Link>
-        <CloseButton onClick={handleModalClose}>Close</CloseButton>
-      </ModalWrapper>
+      <ModalWrapper>{children}</ModalWrapper>
     </ModalBackground>
   );
 
