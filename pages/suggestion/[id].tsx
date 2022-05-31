@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import AddComment from '../../components/molecules/AddComment/AddComment';
 import ReturnHome from '../../components/atoms/ReturnHome/ReturnHome';
 import EditFeedback from '../../components/atoms/EditFeedback/EditFeedback';
+import CommentsSection from '../../components/organisms/CommentsSection/CommentsSection';
+import { suggestionResponse } from '../../types/types';
 
 export const Wrapper = styled.div`
   width: 90%;
@@ -21,7 +23,6 @@ export const LinkWrapper = styled.div`
 `;
 
 const SuggestionPage = ({ suggestion, comments, id }) => {
-  console.log(comments);
   return (
     <Wrapper>
       <LinkWrapper>
@@ -29,6 +30,7 @@ const SuggestionPage = ({ suggestion, comments, id }) => {
         <EditFeedback href={`/suggestion/edit/${id}`} />
       </LinkWrapper>
       <Suggestion data={suggestion} />
+      <CommentsSection comments={comments} />
       <AddComment />
     </Wrapper>
   );
