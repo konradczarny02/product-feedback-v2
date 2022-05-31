@@ -6,6 +6,7 @@ import ReturnHome from '../../components/atoms/ReturnHome/ReturnHome';
 import EditFeedback from '../../components/atoms/EditFeedback/EditFeedback';
 import CommentsSection from '../../components/organisms/CommentsSection/CommentsSection';
 import { suggestionResponse } from '../../types/types';
+import useCurrent from '../../lib/useCurrent';
 
 export const Wrapper = styled.div`
   width: 90%;
@@ -31,7 +32,7 @@ const SuggestionPage = ({ suggestion, comments, id }) => {
       </LinkWrapper>
       <Suggestion data={suggestion} />
       <CommentsSection comments={comments} />
-      <AddComment />
+      <AddComment suggestionId={id} />
     </Wrapper>
   );
 };

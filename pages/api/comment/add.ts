@@ -8,12 +8,12 @@ const addComment = async (req: NextApiRequest, res: NextApiResponse) => {
       content,
       suggestion: {
         connect: {
-          id: +userId,
+          id: +suggestionId,
         },
       },
       user: {
         connect: {
-          id: +suggestionId,
+          id: +userId,
         },
       },
     },

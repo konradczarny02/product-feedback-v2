@@ -34,7 +34,6 @@ const EditForm = ({ suggestion }: Props) => {
     reset,
   } = useForm<FormInterface>();
   const onSubmit: SubmitHandler<FormInterface> = async ({ title, details, category, status }) => {
-    console.log('hi');
     const res = await fetcher('/suggestion/edit', { title, details, category, status });
     if (res.status === 200) {
       setSubmitValue('Changes Saved');
