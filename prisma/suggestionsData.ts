@@ -1,5 +1,13 @@
 import { Category, Status } from '../types/types';
 
+type User = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  userName: string;
+  password: string;
+};
+
 type SuggestionType = {
   title: string;
   details: string;
@@ -7,6 +15,7 @@ type SuggestionType = {
   upvotes: number;
   comments: any[];
   status: Status;
+  createdBy?: User;
 };
 
 export const suggestions: SuggestionType[] = [

@@ -18,7 +18,7 @@ CREATE TABLE "Suggestion" (
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
     "title" TEXT NOT NULL,
-    "detail" TEXT NOT NULL,
+    "details" TEXT NOT NULL,
     "category" TEXT NOT NULL,
     "upvotes" INTEGER NOT NULL,
     "status" TEXT NOT NULL,
@@ -41,6 +41,9 @@ CREATE TABLE "Comment" (
 
 -- CreateIndex
 CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Suggestion_title_key" ON "Suggestion"("title");
 
 -- AddForeignKey
 ALTER TABLE "Comment" ADD CONSTRAINT "Comment_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
