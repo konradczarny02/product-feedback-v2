@@ -31,7 +31,7 @@ const SuggestionPage = ({ suggestion, comments, id }) => {
         <EditFeedback href={`/suggestion/edit/${id}`} />
       </LinkWrapper>
       <Suggestion data={suggestion} />
-      <CommentsSection comments={comments} />
+      {comments.length ? <CommentsSection comments={comments} /> : null}
       <AddComment suggestionId={id} />
     </Wrapper>
   );
