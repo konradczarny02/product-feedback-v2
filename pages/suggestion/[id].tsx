@@ -20,7 +20,8 @@ export const LinkWrapper = styled.div`
   margin-top: 24px;
 `;
 
-const SuggestionPage = ({ suggestion, id }) => {
+const SuggestionPage = ({ suggestion, comments, id }) => {
+  console.log(comments);
   return (
     <Wrapper>
       <LinkWrapper>
@@ -40,10 +41,25 @@ export const getServerSideProps = async (context) => {
       id,
     },
   });
+  const comments = await prisma.comment.findMany({
+    where: {
+      suggestionId: id,
+    },
+    include: {
+      user: {
+        select: {
+          firstName: true,
+          lastName: true,
+          userName: true,
+        },
+      },
+    },
+  });
 
   return {
     props: {
       suggestion,
+      comments,
       id,
     },
   };
