@@ -25,7 +25,6 @@ const CreateForm = () => {
     reset,
   } = useForm<FormInterface>();
   const onSubmit: SubmitHandler<FormInterface> = async ({ title, details, category }) => {
-    console.log(title, details, category);
     const res = await fetcher('/suggestion/add', { title, details, category });
     if (res.status >= 400) {
       setError('Suggestion with that title already exists');

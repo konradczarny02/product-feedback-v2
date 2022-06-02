@@ -20,6 +20,7 @@ const AuthProvider = ({ children }: PropsChildren) => {
         if (res.error) {
           setIsAuthenticated(false);
         } else {
+          sessionStorage.setItem('userId', res.id);
           setIsAuthenticated(true);
         }
       })

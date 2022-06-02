@@ -1,17 +1,29 @@
 import { FormWrapper, ButtonWrapper } from './AddComment.styles';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import fetcher from '../../../lib/fetcher';
+import { useRouter } from 'next/router';
 
 interface FormInterface {
   content: string;
 }
 
-const AddComment = () => {
+type Props = {
+  suggestionId: number;
+};
+
+const AddComment = ({ suggestionId }: Props) => {
+  const router = useRouter();
+  const [userId, setUserId] = useState(null);
   const [num, setNum] = useState(250);
   const handleCharactersLeft = (event) => {
     let val = event.target.value.length;
     setNum(250 - val);
   };
+
+  useEffect(() => {
+    setUserId(+sessionStorage.getItem('userId'));
+  }, []);
 
   const {
     register,
@@ -20,9 +32,10 @@ const AddComment = () => {
     reset,
   } = useForm<FormInterface>();
 
-  const onSubmit: SubmitHandler<FormInterface> = ({ content }) => {
-    console.log(content);
+  const onSubmit: SubmitHandler<FormInterface> = async ({ content }) => {
+    const res = await fetcher('/comment/add', { content, userId, suggestionId });
     reset();
+    router.reload();
   };
 
   return (

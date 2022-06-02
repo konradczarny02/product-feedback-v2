@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import AddComment from '../../components/molecules/AddComment/AddComment';
 import ReturnHome from '../../components/atoms/ReturnHome/ReturnHome';
 import EditFeedback from '../../components/atoms/EditFeedback/EditFeedback';
+import CommentsSection from '../../components/organisms/CommentsSection/CommentsSection';
 
 export const Wrapper = styled.div`
   width: 90%;
@@ -20,7 +21,7 @@ export const LinkWrapper = styled.div`
   margin-top: 24px;
 `;
 
-const SuggestionPage = ({ suggestion, id }) => {
+const SuggestionPage = ({ suggestion, comments, id, commentsNum }) => {
   return (
     <Wrapper>
       <LinkWrapper>
@@ -28,7 +29,8 @@ const SuggestionPage = ({ suggestion, id }) => {
         <EditFeedback href={`/suggestion/edit/${id}`} />
       </LinkWrapper>
       <Suggestion data={suggestion} />
-      <AddComment />
+      {comments.length ? <CommentsSection comments={comments} num={commentsNum} /> : null}
+      <AddComment suggestionId={id} />
     </Wrapper>
   );
 };
@@ -39,12 +41,38 @@ export const getServerSideProps = async (context) => {
     where: {
       id,
     },
+    include: {
+      comments: true,
+    },
+  });
+  const comments = await prisma.comment.findMany({
+    where: {
+      suggestionId: id,
+      parentId: null,
+    },
+    include: {
+      user: {
+        select: {
+          firstName: true,
+          lastName: true,
+          userName: true,
+        },
+      },
+    },
+  });
+
+  const commentsNum = await prisma.comment.count({
+    where: {
+      suggestionId: id,
+    },
   });
 
   return {
     props: {
       suggestion,
+      comments,
       id,
+      commentsNum,
     },
   };
 };

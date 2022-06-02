@@ -39,10 +39,10 @@ model Comment {
   id Int @id @default(autoincrement())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  parentId Int
+  parentId Int?
   content String
-  user User @relation(fields: [userId], references: [id])
-  userId Int
-  suggestion Suggestion @relation(fields: [suggestionId], references: [id])
-  suggestionId Int
+  user User? @relation(fields: [userId], references: [id])
+  userId Int?
+  suggestion Suggestion? @relation(fields: [suggestionId], references: [id])
+  suggestionId Int?
 }

@@ -44,7 +44,11 @@ const Home = ({ suggestions }) => {
 };
 
 export const getServerSideProps = async () => {
-  const suggestions = await prisma.suggestion.findMany({});
+  const suggestions = await prisma.suggestion.findMany({
+    include: {
+      comments: true,
+    },
+  });
 
   return {
     props: { suggestions },
