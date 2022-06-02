@@ -13,7 +13,7 @@ export const GlobalStyles = createGlobalStyle`
   }
   
   div#__next {
-    overflow: hidden;
+    overflow-x: hidden;
     position: relative;
   }
   
