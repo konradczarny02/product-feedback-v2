@@ -33,7 +33,7 @@ const CommentReply = ({ parentId }: Props) => {
   } = useForm<FormInterface>();
   const onSubmit: SubmitHandler<FormInterface> = async ({ content }) => {
     if (typeof userId === 'number') {
-      const res = await fetcher('/comment/reply', { parentId, content, userId, suggestionId: id });
+      const res = await fetcher('/comment/reply', { parentId, content, userId: userId, suggestionId: id });
       reset();
       router.reload();
     }
