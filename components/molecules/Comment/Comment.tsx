@@ -1,7 +1,8 @@
 import { StyledComment, AuthorInfo, Content } from './Comment.styles';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import CommentReply from '../../atoms/CommentReply/CommentReply';
+import fetcher from '../../../lib/fetcher';
 
 const Comment = ({
   comment: {
@@ -11,6 +12,15 @@ const Comment = ({
   },
 }) => {
   const [isReplying, setIsReplying] = useState<boolean>(false);
+  const [replies, setReplies] = useState([]);
+
+  useEffect(() => {
+    fetcher('/comment/getReplies', { parentId: id })
+      .then((res) => res.json())
+      .then((data) => setReplies(data))
+      .catch((error) => console.error(error));
+  }, []);
+
   return (
     <StyledComment>
       <AuthorInfo>
@@ -25,6 +35,13 @@ const Comment = ({
       </AuthorInfo>
       <Content>{content}</Content>
       {isReplying ? <CommentReply parentId={id} /> : null}
+      {replies.length ? (
+        <ul style={{ marginLeft: 'auto', width: '90%' }}>
+          {replies.map((reply) => (
+            <Comment key={reply.id} comment={reply} />
+          ))}
+        </ul>
+      ) : null}
     </StyledComment>
   );
 };

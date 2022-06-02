@@ -13,7 +13,7 @@ type SuggestionProps = {
     title: string;
     details: string;
     category: CategoryType;
-    comments: number;
+    comments?: any[];
     upvotes: number;
   };
 };
@@ -37,7 +37,7 @@ const Suggestion = ({ data: { id, title, details, category, upvotes, comments } 
         <Category name={category} />
       </span>
       <Upvotes upvotesNumber={upvotes} />
-      <CommentsNumber commentsNumber={comments ? comments : 0} />
+      <CommentsNumber commentsNumber={comments ? comments.length : 0} />
     </StyledSuggestion>
   );
 };

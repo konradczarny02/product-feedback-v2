@@ -2,11 +2,13 @@ import prisma from '../../../lib/prisma';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 const reply = async (req: NextApiRequest, res: NextApiResponse) => {
-  const { parentId, content } = req.body;
+  const { parentId, content, userId, suggestionId } = req.body;
   const response = await prisma.comment.create({
     data: {
       content,
       parentId: +parentId,
+      userId: +userId,
+      suggestionId: +suggestionId,
     },
   });
   if (response) {

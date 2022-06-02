@@ -7,6 +7,15 @@ const getReplies = async (req: NextApiRequest, res: NextApiResponse) => {
     where: {
       parentId,
     },
+    include: {
+      user: {
+        select: {
+          firstName: true,
+          lastName: true,
+          userName: true,
+        },
+      },
+    },
   });
 
   if (response) {

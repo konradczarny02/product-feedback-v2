@@ -5,8 +5,6 @@ import AddComment from '../../components/molecules/AddComment/AddComment';
 import ReturnHome from '../../components/atoms/ReturnHome/ReturnHome';
 import EditFeedback from '../../components/atoms/EditFeedback/EditFeedback';
 import CommentsSection from '../../components/organisms/CommentsSection/CommentsSection';
-import { suggestionResponse } from '../../types/types';
-import useCurrent from '../../lib/useCurrent';
 
 export const Wrapper = styled.div`
   width: 90%;
@@ -43,10 +41,14 @@ export const getServerSideProps = async (context) => {
     where: {
       id,
     },
+    include: {
+      comments: true,
+    },
   });
   const comments = await prisma.comment.findMany({
     where: {
       suggestionId: id,
+      parentId: null,
     },
     include: {
       user: {
