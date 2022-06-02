@@ -10,6 +10,7 @@ const Comment = ({
     content,
     id,
   },
+  isReply,
 }) => {
   const [isReplying, setIsReplying] = useState<boolean>(false);
   const [replies, setReplies] = useState([]);
@@ -22,9 +23,9 @@ const Comment = ({
   }, []);
 
   return (
-    <StyledComment>
+    <StyledComment isReply={isReply}>
       <AuthorInfo>
-        <Image src="/avatar.svg" width={40} height={40} />
+        <Image src="/avatar2.svg" width={40} height={40} />
         <div>
           <h3>
             {firstName} {lastName}
@@ -38,7 +39,7 @@ const Comment = ({
       {replies.length ? (
         <ul style={{ marginLeft: 'auto', width: '90%' }}>
           {replies.map((reply) => (
-            <Comment key={reply.id} comment={reply} />
+            <Comment key={reply.id} comment={reply} isReply={true} />
           ))}
         </ul>
       ) : null}

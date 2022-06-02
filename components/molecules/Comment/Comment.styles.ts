@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-export const StyledComment = styled.li`
+export const StyledComment = styled.li<{ isReply: boolean }>`
   width: 100%;
-  border-bottom: 1px solid ${({ theme }) => theme.colors.lightGray};
+  border-bottom: ${({ theme, isReply }) => (isReply ? 'none' : `2px solid ${theme.colors.lightGray}`)};
   display: flex;
   flex-wrap: wrap;
   padding-bottom: 24px;

@@ -21,7 +21,7 @@ export const LinkWrapper = styled.div`
   margin-top: 24px;
 `;
 
-const SuggestionPage = ({ suggestion, comments, id }) => {
+const SuggestionPage = ({ suggestion, comments, id, commentsNum }) => {
   return (
     <Wrapper>
       <LinkWrapper>
@@ -29,7 +29,7 @@ const SuggestionPage = ({ suggestion, comments, id }) => {
         <EditFeedback href={`/suggestion/edit/${id}`} />
       </LinkWrapper>
       <Suggestion data={suggestion} />
-      {comments.length ? <CommentsSection comments={comments} /> : null}
+      {comments.length ? <CommentsSection comments={comments} num={commentsNum} /> : null}
       <AddComment suggestionId={id} />
     </Wrapper>
   );
@@ -61,11 +61,18 @@ export const getServerSideProps = async (context) => {
     },
   });
 
+  const commentsNum = await prisma.comment.count({
+    where: {
+      suggestionId: id,
+    },
+  });
+
   return {
     props: {
       suggestion,
       comments,
       id,
+      commentsNum,
     },
   };
 };
