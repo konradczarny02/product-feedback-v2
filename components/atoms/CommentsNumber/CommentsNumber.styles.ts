@@ -5,6 +5,7 @@ export const StyledCommentsNumber = styled.div`
   display: flex;
   align-items: center;
   padding: 6px 2px;
+  cursor: pointer;
   p {
     font-size: 13px;
     font-weight: 700;

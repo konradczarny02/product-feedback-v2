@@ -5,6 +5,10 @@ import AddComment from '../../components/molecules/AddComment/AddComment';
 import ReturnHome from '../../components/atoms/ReturnHome/ReturnHome';
 import EditFeedback from '../../components/atoms/EditFeedback/EditFeedback';
 import CommentsSection from '../../components/organisms/CommentsSection/CommentsSection';
+import { useContext } from 'react';
+import { ModalContext } from '../../providers/ModalProvider';
+import Modal from '../../components/organisms/Modal/Modal';
+import SignModal from '../../components/molecules/ModalContent/SignModal';
 
 export const Wrapper = styled.div`
   width: 90%;
@@ -22,6 +26,7 @@ export const LinkWrapper = styled.div`
 `;
 
 const SuggestionPage = ({ suggestion, comments, id, commentsNum }) => {
+  const { isOpen } = useContext(ModalContext);
   return (
     <Wrapper>
       <LinkWrapper>
@@ -31,12 +36,17 @@ const SuggestionPage = ({ suggestion, comments, id, commentsNum }) => {
       <Suggestion data={suggestion} />
       {comments.length ? <CommentsSection comments={comments} num={commentsNum} /> : null}
       <AddComment suggestionId={id} />
+      {isOpen ? (
+        <Modal>
+          <SignModal />
+        </Modal>
+      ) : null}
     </Wrapper>
   );
 };
 
 export const getServerSideProps = async (context) => {
-  let id: number = +context.params.id;
+  let id: number = parseInt(context.params.id);
   const suggestion = await prisma.suggestion.findUnique({
     where: {
       id,

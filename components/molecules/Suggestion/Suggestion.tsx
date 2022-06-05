@@ -6,6 +6,7 @@ import { Category as CategoryType } from '../../../types/types';
 import Category from '../../atoms/Category/Category';
 import { useContext } from 'react';
 import { AuthContext } from '../../../providers/AuthProvider';
+import { ModalContext } from '../../../providers/ModalProvider';
 
 type SuggestionProps = {
   data: {
@@ -13,7 +14,7 @@ type SuggestionProps = {
     title: string;
     details: string;
     category: CategoryType;
-    comments?: any[];
+    comments?: string[];
     upvotes: number;
   };
 };
@@ -21,23 +22,32 @@ type SuggestionProps = {
 const Suggestion = ({ data: { id, title, details, category, upvotes, comments } }: SuggestionProps) => {
   const router = useRouter();
   const { isAuthenticated } = useContext(AuthContext);
+  const { handleModalOpen } = useContext(ModalContext);
   return (
-    <StyledSuggestion
-      onClick={() => {
-        if (isAuthenticated) {
-          router.push(`/suggestion/${id}`);
-        } else {
-          router.push(`/signin`);
-        }
-      }}
-    >
+    <StyledSuggestion>
       <h3>{title}</h3>
       <StyledDescription>{details}</StyledDescription>
       <span>
         <Category name={category} />
       </span>
-      <Upvotes upvotesNumber={upvotes} />
-      <CommentsNumber commentsNumber={comments ? comments.length : 0} />
+      <Upvotes
+        upvotesNumber={upvotes}
+        onClick={() => {
+          if (!isAuthenticated) {
+            handleModalOpen();
+          }
+        }}
+      />
+      <CommentsNumber
+        commentsNumber={comments ? comments.length : 0}
+        onClick={() => {
+          if (isAuthenticated) {
+            router.push(`/suggestion/${id}`);
+          } else {
+            handleModalOpen();
+          }
+        }}
+      />
     </StyledSuggestion>
   );
 };
