@@ -3,7 +3,7 @@ import CommentsIcon from '../../../styles/images/icons/commentIcon.svg';
 
 type CommentsProps = {
   commentsNumber: number;
-  onClick: () => void;
+  onClick?: () => void;
 };
 
 const CommentsCount = ({ commentsNumber, onClick }: CommentsProps) => {
