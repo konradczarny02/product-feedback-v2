@@ -3,7 +3,7 @@ import UpvoteIcon from '../../../styles/images/icons/upvoteIcon.svg';
 
 type UpvotesProps = {
   upvotesNumber: number;
-  onClick: () => void;
+  onClick?: () => void;
 };
 
 const Upvotes = ({ upvotesNumber, onClick }: UpvotesProps) => {
