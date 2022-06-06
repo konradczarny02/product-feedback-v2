@@ -3,11 +3,12 @@ import CommentsIcon from '../../../styles/images/icons/commentIcon.svg';
 
 type CommentsProps = {
   commentsNumber: number;
+  onClick: () => void;
 };
 
-const CommentsCount = ({ commentsNumber }: CommentsProps) => {
+const CommentsCount = ({ commentsNumber, onClick }: CommentsProps) => {
   return (
-    <StyledCommentsNumber>
+    <StyledCommentsNumber onClick={onClick}>
       <CommentsIcon />
       <p>{commentsNumber}</p>
     </StyledCommentsNumber>

@@ -1,8 +1,10 @@
 import { FormWrapper, ButtonWrapper } from './AddComment.styles';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import fetcher from '../../../lib/fetcher';
 import { useRouter } from 'next/router';
+import { AuthContext } from '../../../providers/AuthProvider';
+import { ModalContext } from '../../../providers/ModalProvider';
 
 interface FormInterface {
   content: string;
@@ -13,6 +15,8 @@ type Props = {
 };
 
 const AddComment = ({ suggestionId }: Props) => {
+  const { isAuthenticated } = useContext(AuthContext);
+  const { handleModalOpen } = useContext(ModalContext);
   const router = useRouter();
   const [userId, setUserId] = useState(null);
   const [num, setNum] = useState(250);

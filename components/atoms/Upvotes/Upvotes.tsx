@@ -3,11 +3,12 @@ import UpvoteIcon from '../../../styles/images/icons/upvoteIcon.svg';
 
 type UpvotesProps = {
   upvotesNumber: number;
+  onClick: () => void;
 };
 
-const Upvotes = ({ upvotesNumber }: UpvotesProps) => {
+const Upvotes = ({ upvotesNumber, onClick }: UpvotesProps) => {
   return (
-    <StyledUpvotes>
+    <StyledUpvotes onClick={onClick}>
       <UpvoteIcon />
       <p>{upvotesNumber}</p>
     </StyledUpvotes>
