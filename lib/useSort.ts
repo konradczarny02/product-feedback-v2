@@ -3,16 +3,16 @@ import { useEffect, useState } from 'react';
 const sortData = (sort, data, fn) => {
   switch (sort) {
     case 'Most Upvotes':
-      fn([...data].sort((a, b) => b.upvotes - a.upvotes));
+      fn([...data].sort((a, b) => b.upvotes.length - a.upvotes.length));
       break;
     case 'Least Upvotes':
-      fn([...data].sort((a, b) => a.upvotes - b.upvotes));
+      fn([...data].sort((a, b) => a.upvotes.length - b.upvotes.length));
       break;
     case 'Most Comments':
-      fn([...data].sort((a, b) => b.comments - a.comments));
+      fn([...data].sort((a, b) => b.comments.length - a.comments.length));
       break;
     case 'Least Comments':
-      fn([...data].sort((a, b) => a.comments - b.comments));
+      fn([...data].sort((a, b) => a.comments.length - b.comments.length));
   }
 };
 

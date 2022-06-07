@@ -16,6 +16,7 @@ type Props = {
 };
 
 const RoadmapSuggestion = ({ data: { title, comments, details, status, upvotes, category } }: Props) => {
+  console.log(comments);
   return (
     <ListItemWrapper>
       <StatusInfo status={status}>{status}</StatusInfo>

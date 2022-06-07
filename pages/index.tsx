@@ -47,6 +47,7 @@ export const getServerSideProps = async () => {
   const suggestions = await prisma.suggestion.findMany({
     include: {
       comments: true,
+      upvotes: true,
     },
   });
 
