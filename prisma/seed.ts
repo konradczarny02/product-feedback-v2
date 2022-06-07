@@ -14,7 +14,6 @@ const run = async () => {
           title: suggestion.title,
           details: suggestion.details,
           status: suggestion.status,
-          upvotes: suggestion.upvotes,
           category: suggestion.category,
         },
       });
