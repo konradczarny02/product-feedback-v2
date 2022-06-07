@@ -15,7 +15,7 @@ type SuggestionProps = {
     details: string;
     category: CategoryType;
     comments?: string[];
-    upvotes: number;
+    upvotes?: any[];
   };
 };
 
@@ -31,7 +31,7 @@ const Suggestion = ({ data: { id, title, details, category, upvotes, comments } 
         <Category name={category} />
       </span>
       <Upvotes
-        upvotesNumber={upvotes}
+        upvotesNumber={upvotes.length}
         onClick={() => {
           if (!isAuthenticated) {
             handleModalOpen();
