@@ -9,10 +9,10 @@ const sortData = (sort, data, fn) => {
       fn([...data].sort((a, b) => a.upvotes - b.upvotes));
       break;
     case 'Most Comments':
-      fn([...data].sort((a, b) => b.comments - a.comments));
+      fn([...data].sort((a, b) => b.comments.length - a.comments.length));
       break;
     case 'Least Comments':
-      fn([...data].sort((a, b) => a.comments - b.comments));
+      fn([...data].sort((a, b) => a.comments.length - b.comments.length));
   }
 };
 

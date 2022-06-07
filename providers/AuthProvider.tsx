@@ -1,4 +1,4 @@
-import { useState, useEffect, createContext, ReactNode } from 'react';
+import { useState, useEffect, createContext, useCallback } from 'react';
 import { PropsChildren } from '../types/types';
 import fetcher from '../lib/fetcher';
 
@@ -10,8 +10,8 @@ export const AuthContext = createContext<{ isAuthenticated: boolean; handleSignI
 
 const AuthProvider = ({ children }: PropsChildren) => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
-  const handleSignIn = () => setIsAuthenticated(true);
-  const handleSignOut = () => setIsAuthenticated(false);
+  const handleSignIn = useCallback(() => setIsAuthenticated(true), []);
+  const handleSignOut = useCallback(() => setIsAuthenticated(false), []);
 
   useEffect(() => {
     fetcher('/user/current')

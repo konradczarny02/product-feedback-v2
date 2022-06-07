@@ -9,6 +9,7 @@ import Modal from '../components/organisms/Modal/Modal';
 import SignModal from '../components/molecules/ModalContent/SignModal';
 
 const Roadmap = ({ suggestions }) => {
+  console.log(suggestions);
   const { isOpen } = useContext(ModalContext);
   const [active, setActive] = useState<Status>('Planned');
   const handleSetActive = (value: Status) => {
@@ -41,7 +42,11 @@ const Roadmap = ({ suggestions }) => {
 };
 
 export const getServerSideProps = async () => {
-  const suggestions = await prisma.suggestion.findMany({});
+  const suggestions = await prisma.suggestion.findMany({
+    include: {
+      comments: true,
+    },
+  });
 
   return {
     props: { suggestions },
