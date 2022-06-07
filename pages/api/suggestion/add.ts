@@ -10,8 +10,6 @@ const addSuggestion = async (req: NextApiRequest, res: NextApiResponse) => {
       details,
       category,
       status: 'Planned',
-      comments: undefined,
-      upvotes: 0,
     },
   });
 
