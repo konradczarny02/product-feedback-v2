@@ -53,6 +53,7 @@ export const getServerSideProps = async (context) => {
     },
     include: {
       comments: true,
+      upvotes: true,
     },
   });
   const comments = await prisma.comment.findMany({

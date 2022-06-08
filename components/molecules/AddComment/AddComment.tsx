@@ -5,6 +5,7 @@ import fetcher from '../../../lib/fetcher';
 import { useRouter } from 'next/router';
 import { AuthContext } from '../../../providers/AuthProvider';
 import { ModalContext } from '../../../providers/ModalProvider';
+import useUserId from '../../../lib/userUserId';
 
 interface FormInterface {
   content: string;
@@ -15,19 +16,13 @@ type Props = {
 };
 
 const AddComment = ({ suggestionId }: Props) => {
-  const { isAuthenticated } = useContext(AuthContext);
-  const { handleModalOpen } = useContext(ModalContext);
   const router = useRouter();
-  const [userId, setUserId] = useState(null);
+  const { userId } = useUserId();
   const [num, setNum] = useState(250);
   const handleCharactersLeft = (event) => {
     let val = event.target.value.length;
     setNum(250 - val);
   };
-
-  useEffect(() => {
-    setUserId(+sessionStorage.getItem('userId'));
-  }, []);
 
   const {
     register,

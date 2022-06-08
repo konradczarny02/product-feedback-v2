@@ -6,17 +6,17 @@ import { Status, Category as CategoryType } from '../../../types/types';
 
 type Props = {
   data: {
+    id: number;
     title: string;
     details: string;
     status: Status;
     category: CategoryType;
-    upvotes: number;
-    comments?: string[];
+    upvotes: any[];
+    comments?: any[];
   };
 };
 
-const RoadmapSuggestion = ({ data: { title, comments, details, status, upvotes, category } }: Props) => {
-  console.log(comments);
+const RoadmapSuggestion = ({ data: { id, title, comments, details, status, upvotes, category } }: Props) => {
   return (
     <ListItemWrapper>
       <StatusInfo status={status}>{status}</StatusInfo>
@@ -26,8 +26,8 @@ const RoadmapSuggestion = ({ data: { title, comments, details, status, upvotes, 
         <Category name={category} />
       </CategoryWrapper>
       <UpvoteWrapper>
-        <Upvotes upvotesNumber={upvotes} />
-        <CommentsNumber commentsNumber={comments ? comments.length : 0} />
+        <Upvotes suggestionId={id} upvotesNumber={upvotes.length} />
+        <CommentsNumber suggestionId={id} commentsNumber={comments ? comments.length : 0} />
       </UpvoteWrapper>
     </ListItemWrapper>
   );
