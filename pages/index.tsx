@@ -5,7 +5,7 @@ import Overlay from '../components/atoms/Overlay/Overlay';
 import Sidebar from '../components/organisms/Sidebar/Sidebar';
 import DesktopNav from '../components/organisms/DesktopNav/DesktopNav';
 import SuggestionsList from '../components/organisms/SuggestionsList/SuggestionsList';
-import prisma from '../lib/prisma';
+import { prisma } from '../lib/prisma';
 import Sort from '../components/organisms/Sort/Sort';
 import { useContext } from 'react';
 import { ModalContext } from '../providers/ModalProvider';

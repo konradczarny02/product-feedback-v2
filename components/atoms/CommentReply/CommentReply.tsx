@@ -4,6 +4,7 @@ import { StyledError } from '../../organisms/Forms/CreateForm.styles';
 import fetcher from '../../../lib/fetcher';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import useUserId from '../../../lib/userUserId';
 
 type Props = {
   parentId: number;
@@ -17,13 +18,9 @@ interface FormInterface {
 const errorMsg = `Can't be empty`;
 
 const CommentReply = ({ parentId }: Props) => {
-  const [userId, setUserId] = useState<null | number>(null);
   const router = useRouter();
+  const { userId } = useUserId();
   const { id } = router.query;
-
-  useEffect(() => {
-    setUserId(+sessionStorage.getItem('userId'));
-  }, []);
 
   const {
     register,

@@ -20,7 +20,7 @@ const Comment = ({
       .then((res) => res.json())
       .then((data) => setReplies(data))
       .catch((error) => console.error(error));
-  }, []);
+  }, [id]);
 
   return (
     <StyledComment isReply={isReply}>

@@ -1,4 +1,4 @@
-import prisma from '../../../lib/prisma';
+import { prisma } from '../../../lib/prisma';
 import EditForm from '../../../components/organisms/Forms/EditForm';
 import styled from 'styled-components';
 import ReturnHome from '../../../components/atoms/ReturnHome/ReturnHome';

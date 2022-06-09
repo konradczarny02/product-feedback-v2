@@ -1,4 +1,4 @@
-import prisma from '../../lib/prisma';
+import { prisma } from '../../lib/prisma';
 import Suggestion from '../../components/molecules/Suggestion/Suggestion';
 import styled from 'styled-components';
 import AddComment from '../../components/molecules/AddComment/AddComment';
@@ -53,6 +53,7 @@ export const getServerSideProps = async (context) => {
     },
     include: {
       comments: true,
+      upvotes: true,
     },
   });
   const comments = await prisma.comment.findMany({

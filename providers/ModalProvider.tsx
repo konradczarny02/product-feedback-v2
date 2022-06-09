@@ -1,4 +1,4 @@
-import { useState, createContext } from 'react';
+import { useState, createContext, useCallback } from 'react';
 import { PropsChildren } from '../types/types';
 
 interface ModalContextInterface {
@@ -15,10 +15,8 @@ export const ModalContext = createContext<ModalContextInterface>({
 
 const ModalProvider = ({ children }: PropsChildren) => {
   const [isOpen, setModalState] = useState<boolean>(false);
-  const handleModalClose = () => {
-    setModalState(false);
-  };
-  const handleModalOpen = () => setModalState(true);
+  const handleModalClose = useCallback(() => setModalState(false), []);
+  const handleModalOpen = useCallback(() => setModalState(true), []);
 
   return <ModalContext.Provider value={{ isOpen, handleModalClose, handleModalOpen }}>{children}</ModalContext.Provider>;
 };
