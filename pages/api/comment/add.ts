@@ -1,4 +1,4 @@
-import prisma from '../../../lib/prisma';
+import { prisma } from '../../../lib/prisma';
 import { NextApiResponse, NextApiRequest } from 'next';
 
 const addComment = async (req: NextApiRequest, res: NextApiResponse) => {

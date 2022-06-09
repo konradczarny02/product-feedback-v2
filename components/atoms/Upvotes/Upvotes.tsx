@@ -31,7 +31,7 @@ const Upvotes = ({ upvotesNumber, suggestionId }: UpvotesProps) => {
           }
         });
     }
-  }, [isAuthenticated]);
+  }, [isAuthenticated, userId, suggestionId]);
 
   return (
     <StyledUpvotes

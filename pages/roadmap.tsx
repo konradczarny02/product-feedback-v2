@@ -1,4 +1,4 @@
-import prisma from '../lib/prisma';
+import { prisma } from '../lib/prisma';
 import RoadMapHeader from '../components/molecules/RoadmapHeader/RoadMapHeader';
 import RoadmapNavigation from '../components/molecules/RoadmapNavigation/RoadmapNavigation';
 import RoadmapList from '../components/organisms/RoadmapList/RoadmapList';

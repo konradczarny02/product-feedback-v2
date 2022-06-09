@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import prisma from './prisma';
+import { prisma } from './prisma';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 export const validateRoute = (handler) => {

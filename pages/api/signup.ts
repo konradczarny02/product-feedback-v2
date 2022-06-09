@@ -2,7 +2,7 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import cookie from 'cookie';
 import { NextApiResponse, NextApiRequest } from 'next';
-import prisma from '../../lib/prisma';
+import { prisma } from '../../lib/prisma';
 
 const signUp = async (req: NextApiRequest, res: NextApiResponse) => {
   const salt = bcrypt.genSaltSync();
