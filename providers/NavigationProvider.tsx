@@ -1,21 +1,29 @@
-import { createContext, useState, ReactNode } from 'react';
+import { createContext, useState, ReactNode, useCallback, useMemo } from 'react';
 import { PropsChildren } from '../types/types';
 
-interface NavigationContextI {
+interface INavigationContext {
   isOpen: boolean;
   handleOpen: () => void;
 }
 
-export const NavigationContext = createContext<NavigationContextI>({
+export const NavigationContext = createContext<INavigationContext>({
   isOpen: false,
   handleOpen: () => {},
 });
 
 const NavigationProvider = ({ children }: PropsChildren) => {
   const [isOpen, setIsOpen] = useState(false);
-  const handleOpen = () => setIsOpen((prevState) => !prevState);
+  const handleOpen = useCallback(() => setIsOpen((prevState) => !prevState), []);
 
-  return <NavigationContext.Provider value={{ isOpen, handleOpen }}>{children}</NavigationContext.Provider>;
+  const context = useMemo(
+    (): INavigationContext => ({
+      isOpen,
+      handleOpen,
+    }),
+    [isOpen, handleOpen]
+  );
+
+  return <NavigationContext.Provider value={context}>{children}</NavigationContext.Provider>;
 };
 
 export default NavigationProvider;

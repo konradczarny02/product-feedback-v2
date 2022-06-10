@@ -9,6 +9,7 @@ import { useContext } from 'react';
 import { ModalContext } from '../../providers/ModalProvider';
 import Modal from '../../components/organisms/Modal/Modal';
 import SignModal from '../../components/molecules/ModalContent/SignModal';
+import { Comment, suggestionResponse } from '../../types/types';
 
 export const Wrapper = styled.div`
   width: 90%;
@@ -25,7 +26,14 @@ export const LinkWrapper = styled.div`
   margin-top: 24px;
 `;
 
-const SuggestionPage = ({ suggestion, comments, id, commentsNum }) => {
+type Props = {
+  suggestion: suggestionResponse;
+  comments: Comment[];
+  id: number;
+  commentsNum: number;
+};
+
+const SuggestionPage = ({ suggestion, comments, id, commentsNum }: Props) => {
   const { isOpen } = useContext(ModalContext);
   return (
     <Wrapper>

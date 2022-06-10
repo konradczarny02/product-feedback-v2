@@ -1,18 +1,29 @@
-import { useState, useEffect, createContext, useCallback } from 'react';
-import { PropsChildren } from '../types/types';
+import { useState, useEffect, createContext, useCallback, useMemo } from 'react';
+import { PropsChildren, User } from '../types/types';
 import fetcher from '../lib/fetcher';
 
-export const AuthContext = createContext<{ isAuthenticated: boolean; handleSignIn: () => void; handleSignOut: () => void }>({
+interface IAuthContext {
+  isAuthenticated: boolean;
+  user: User;
+  handleSignIn: () => void;
+  handleSignOut: () => void;
+}
+
+export const AuthContext = createContext<IAuthContext>({
   isAuthenticated: false,
+  user: {} as User,
   handleSignIn: () => {},
   handleSignOut: () => {},
 });
 
 const AuthProvider = ({ children }: PropsChildren) => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+  const [user, setUser] = useState<User>({} as User);
   const handleSignIn = useCallback(() => setIsAuthenticated(true), []);
-  const handleSignOut = useCallback(() => setIsAuthenticated(false), []);
-  console.log(isAuthenticated);
+  const handleSignOut = useCallback(() => {
+    setIsAuthenticated(false);
+    setUser({} as User);
+  }, []);
 
   useEffect(() => {
     fetcher('/user/current')
@@ -21,14 +32,24 @@ const AuthProvider = ({ children }: PropsChildren) => {
         if (res.error) {
           setIsAuthenticated(false);
         } else {
-          sessionStorage.setItem('userId', res.id);
+          setUser(res);
           setIsAuthenticated(true);
         }
       })
       .catch((error) => console.log(error));
-  }, []);
+  }, [isAuthenticated]);
 
-  return <AuthContext.Provider value={{ isAuthenticated, handleSignIn, handleSignOut }}>{children}</AuthContext.Provider>;
+  const context = useMemo(
+    (): IAuthContext => ({
+      isAuthenticated,
+      user,
+      handleSignIn,
+      handleSignOut,
+    }),
+    [user, isAuthenticated, handleSignOut, handleSignIn]
+  );
+
+  return <AuthContext.Provider value={context}>{children}</AuthContext.Provider>;
 };
 
 export default AuthProvider;
