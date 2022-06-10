@@ -6,7 +6,7 @@ export type PropsChildren = {
 };
 
 export type Category = 'Bug' | 'Enhancement' | 'UX' | 'UI' | 'Feature';
-export type Filter = Category & 'All';
+export type Filter = 'Bug' | 'Enhancement' | 'UX' | 'UI' | 'Feature' | 'All';
 
 export type Status = 'Planned' | 'In-Progress' | 'Live';
 

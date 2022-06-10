@@ -3,7 +3,7 @@ import Comment from '../../molecules/Comment/Comment';
 import { Comment as CommentType, User } from '../../../types/types';
 
 type Props = {
-  comments: CommentType & User;
+  comments: any[];
   num: number;
 };
 
