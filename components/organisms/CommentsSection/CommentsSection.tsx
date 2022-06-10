@@ -1,5 +1,11 @@
 import { Wrapper } from './CommentsSection.styles';
 import Comment from '../../molecules/Comment/Comment';
+import { Comment as CommentType, User } from '../../../types/types';
+
+type Props = {
+  comments: CommentType & User;
+  num: number;
+};
 
 const CommentsSection = ({ comments, num }) => {
   return (

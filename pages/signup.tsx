@@ -1,8 +1,8 @@
 import { useForm, SubmitHandler } from 'react-hook-form';
-import styled from 'styled-components';
 import { StyledError } from '../components/organisms/Forms/CreateForm.styles';
 import { useContext, useState } from 'react';
-import { LinkWrapper, SignInWrapper, Wrapper } from './signin';
+import { SignUpWrapper } from '../components/organisms/Forms/SignUp.styles';
+import { Wrapper, LinkWrapper } from '../components/organisms/Forms/SignIn.styles';
 import { useRouter } from 'next/router';
 import { auth } from '../lib/mutations';
 import { AuthContext } from '../providers/AuthProvider';
@@ -11,60 +11,6 @@ import Link from 'next/link';
 const firstLetterToUpperCase = (str) => {
   return `${str[0].toUpperCase()}${str.slice(1)}`;
 };
-
-export const SignUpWrapper = styled(SignInWrapper)`
-  input#firstName {
-    outline: ${({ theme, errors, authError }) => {
-      if (errors.firstName || authError) {
-        return `1px solid ${theme.colors.error}`;
-      } else {
-        return `none`;
-      }
-    }};
-    &:focus {
-      outline: ${({ theme, errors, authError }) => {
-        if (errors.firstName || authError) {
-          return `1px solid ${theme.colors.error}`;
-        } else {
-          return `1px solid ${theme.colors.blue}`;
-        }
-      }};
-    }
-  }
-
-  input#lastName {
-    outline: ${({ theme, errors, authError }) => {
-      if (errors.lastName || authError) {
-        return `1px solid ${theme.colors.error}`;
-      } else {
-        return `none`;
-      }
-    }};
-    &:focus {
-      outline: ${({ theme, errors, authError }) => {
-        if (errors.lastName || authError) {
-          return `1px solid ${theme.colors.error}`;
-        } else {
-          return `1px solid ${theme.colors.blue}`;
-        }
-      }};
-    }
-  }
-
-  label[for='firstName'] {
-    @media (min-width: 768px) {
-      flex-basis: 49%;
-      flex-wrap: wrap;
-    }
-  }
-
-  label[for='lastName'] {
-    @media (min-width: 768px) {
-      flex-basis: 49%;
-      margin-left: 2%;
-    }
-  }
-`;
 
 interface FormInterface {
   email: string;

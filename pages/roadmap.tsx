@@ -2,21 +2,22 @@ import { prisma } from '../lib/prisma';
 import RoadMapHeader from '../components/molecules/RoadmapHeader/RoadMapHeader';
 import RoadmapNavigation from '../components/molecules/RoadmapNavigation/RoadmapNavigation';
 import RoadmapList from '../components/organisms/RoadmapList/RoadmapList';
-import { useContext, useState } from 'react';
+import { useCallback, useContext, useState } from 'react';
 import { Status } from '../types/types';
 import { ModalContext } from '../providers/ModalProvider';
 import Modal from '../components/organisms/Modal/Modal';
 import SignModal from '../components/molecules/ModalContent/SignModal';
 
+const filterArr = (arr, filterName) => {
+  return arr.filter((item) => item.status === filterName);
+};
+
 const Roadmap = ({ suggestions }) => {
   const { isOpen } = useContext(ModalContext);
   const [active, setActive] = useState<Status>('Planned');
-  const handleSetActive = (value: Status) => {
+  const handleSetActive = useCallback((value: Status) => {
     setActive(value);
-  };
-  const filterArr = (arr, filterName) => {
-    return arr.filter((item) => item.status === filterName);
-  };
+  }, []);
   const live = filterArr(suggestions, 'Live');
   const planned = filterArr(suggestions, 'Planned');
   const progress = filterArr(suggestions, 'In-Progress');
