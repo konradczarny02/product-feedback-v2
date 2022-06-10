@@ -1,4 +1,4 @@
-import { useState, createContext, useCallback } from 'react';
+import { useState, createContext, useCallback, useMemo } from 'react';
 import { PropsChildren } from '../types/types';
 
 interface ModalContextInterface {
@@ -18,7 +18,16 @@ const ModalProvider = ({ children }: PropsChildren) => {
   const handleModalClose = useCallback(() => setModalState(false), []);
   const handleModalOpen = useCallback(() => setModalState(true), []);
 
-  return <ModalContext.Provider value={{ isOpen, handleModalClose, handleModalOpen }}>{children}</ModalContext.Provider>;
+  const context = useMemo(
+    (): ModalContextInterface => ({
+      isOpen,
+      handleModalOpen,
+      handleModalClose,
+    }),
+    [isOpen, handleModalClose, handleModalOpen]
+  );
+
+  return <ModalContext.Provider value={context}>{children}</ModalContext.Provider>;
 };
 
 export default ModalProvider;
