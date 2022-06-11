@@ -8,7 +8,7 @@ import { auth } from '../lib/mutations';
 import { AuthContext } from '../providers/AuthProvider';
 import Link from 'next/link';
 
-const firstLetterToUpperCase = (str) => {
+const firstLetterToUpperCase = (str: string) => {
   return `${str[0].toUpperCase()}${str.slice(1)}`;
 };
 

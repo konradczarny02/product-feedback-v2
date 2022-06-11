@@ -8,7 +8,7 @@ type Props = {
   title: string;
 };
 
-const DeleteModal = ({ title }) => {
+const DeleteModal = ({ title }: Props) => {
   const { handleModalClose } = useContext(ModalContext);
   const router = useRouter();
 

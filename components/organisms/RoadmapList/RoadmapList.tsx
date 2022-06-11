@@ -1,12 +1,12 @@
 import { Wrapper, ListsWrapper, StatusDesc, StatusInfo } from './RoadmapList.styles';
-import { Status, StatusDescription, suggestionResponse } from '../../../types/types';
+import { Status, StatusDescription, ISuggestionResponse } from '../../../types/types';
 import { useEffect, useState } from 'react';
 import RoadmapSuggestion from '../../molecules/RoadmapSuggestion/RoadmapSuggestion';
 
 type Props = {
-  plannedSuggestions: suggestionResponse[];
-  inProgressSuggestions: suggestionResponse[];
-  liveSuggestions: suggestionResponse[];
+  plannedSuggestions: ISuggestionResponse[];
+  inProgressSuggestions: ISuggestionResponse[];
+  liveSuggestions: ISuggestionResponse[];
   active: Status;
 };
 

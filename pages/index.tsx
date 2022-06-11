@@ -11,18 +11,13 @@ import { useContext } from 'react';
 import { ModalContext } from '../providers/ModalProvider';
 import Modal from '../components/organisms/Modal/Modal';
 import SignModal from '../components/molecules/ModalContent/SignModal';
+import { ISuggestionResponse } from '../types/types';
 
-export const Wrapper = styled.div`
-  @media (min-width: 1440px) {
-    display: grid;
-    grid-template-columns: 250px 900px;
-    grid-template-rows: 96px 1fr;
-    margin: 96px auto 0;
-    width: 1150px;
-  }
-`;
+type Props = {
+  suggestions: ISuggestionResponse[];
+};
 
-const Home = ({ suggestions }) => {
+const Home = ({ suggestions }: Props) => {
   const { isOpen } = useContext(ModalContext);
   return (
     <Wrapper>
@@ -57,3 +52,13 @@ export const getServerSideProps = async () => {
 };
 
 export default Home;
+
+export const Wrapper = styled.div`
+  @media (min-width: 1440px) {
+    display: grid;
+    grid-template-columns: 250px 900px;
+    grid-template-rows: 96px 1fr;
+    margin: 96px auto 0;
+    width: 1150px;
+  }
+`;

@@ -14,7 +14,7 @@ type UpvotesProps = {
 const Upvotes = ({ upvotesNumber, suggestionId }: UpvotesProps) => {
   const { isAuthenticated, user } = useContext(AuthContext);
   const { handleModalOpen } = useContext(ModalContext);
-  const [isUpvoted, setIsUpvoted] = useState(false);
+  const [isUpvoted, setIsUpvoted] = useState<boolean>(false);
   const router = useRouter();
 
   useEffect(() => {

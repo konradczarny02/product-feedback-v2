@@ -3,8 +3,13 @@ import Suggestion from '../../molecules/Suggestion/Suggestion';
 import EmptyFeedback from '../../molecules/EmptyFeedback/EmptyFeedback';
 import { useSort } from '../../../lib/useSort';
 import { useAppSelector } from '../../../store/hooks';
+import { ISuggestionResponse } from '../../../types/types';
 
-const SuggestionsList = ({ suggestions }) => {
+type Props = {
+  suggestions: ISuggestionResponse[];
+};
+
+const SuggestionsList = ({ suggestions }: Props) => {
   const filter = useAppSelector((state) => state.filter);
   const sortBy = useAppSelector((state) => state.sort);
   const [filteredSuggestions] = useSort(suggestions, filter.filter, sortBy.sort);
@@ -15,7 +20,7 @@ const SuggestionsList = ({ suggestions }) => {
         <EmptyFeedback />
       ) : (
         <StyledList>
-          {filteredSuggestions.map((suggestion) => (
+          {filteredSuggestions.map((suggestion: ISuggestionResponse) => (
             <Suggestion key={suggestion.id} data={suggestion} />
           ))}
         </StyledList>

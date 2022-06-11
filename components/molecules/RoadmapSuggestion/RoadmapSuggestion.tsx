@@ -2,18 +2,10 @@ import { ListItemWrapper, Details, CategoryWrapper, UpvoteWrapper, Title, Status
 import Category from '../../atoms/Category/Category';
 import Upvotes from '../../atoms/Upvotes/Upvotes';
 import CommentsNumber from '../../atoms/CommentsNumber/CommentsNumber';
-import { Status, Category as CategoryType } from '../../../types/types';
+import { Status, Category as CategoryType, ISuggestionResponse } from '../../../types/types';
 
 type Props = {
-  data: {
-    id: number;
-    title: string;
-    details: string;
-    status: Status;
-    category: CategoryType;
-    upvotes: any[];
-    comments?: any[];
-  };
+  data: ISuggestionResponse;
 };
 
 const RoadmapSuggestion = ({ data: { id, title, comments, details, status, upvotes, category } }: Props) => {

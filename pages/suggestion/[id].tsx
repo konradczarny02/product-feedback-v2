@@ -9,26 +9,11 @@ import { useContext } from 'react';
 import { ModalContext } from '../../providers/ModalProvider';
 import Modal from '../../components/organisms/Modal/Modal';
 import SignModal from '../../components/molecules/ModalContent/SignModal';
-import { Comment, suggestionResponse } from '../../types/types';
-
-export const Wrapper = styled.div`
-  width: 90%;
-  height: 100vh;
-  margin: auto;
-  max-width: 1000px;
-`;
-
-export const LinkWrapper = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 24px;
-`;
+import { ICommentWithUser, ISuggestionResponse } from '../../types/types';
 
 type Props = {
-  suggestion: suggestionResponse;
-  comments: Comment[];
+  suggestion: ISuggestionResponse;
+  comments: ICommentWithUser[];
   id: number;
   commentsNum: number;
 };
@@ -53,7 +38,7 @@ const SuggestionPage = ({ suggestion, comments, id, commentsNum }: Props) => {
   );
 };
 
-export const getServerSideProps = async (context) => {
+export const getServerSideProps = async (context: { params: { id: string } }) => {
   let id: number = parseInt(context.params.id);
   const suggestion = await prisma.suggestion.findUnique({
     where: {
@@ -95,5 +80,20 @@ export const getServerSideProps = async (context) => {
     },
   };
 };
+
+export const Wrapper = styled.div`
+  width: 90%;
+  height: 100vh;
+  margin: auto;
+  max-width: 1000px;
+`;
+
+export const LinkWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 24px;
+`;
 
 export default SuggestionPage;

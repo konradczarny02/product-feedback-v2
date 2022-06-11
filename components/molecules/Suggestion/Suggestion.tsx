@@ -2,18 +2,11 @@ import { useRouter } from 'next/router';
 import Upvotes from '../../atoms/Upvotes/Upvotes';
 import CommentsNumber from '../../atoms/CommentsNumber/CommentsNumber';
 import { StyledSuggestion, StyledDescription } from './Suggestion.styles';
-import { Category as CategoryType } from '../../../types/types';
+import { Category as CategoryType, ISuggestionResponse } from '../../../types/types';
 import Category from '../../atoms/Category/Category';
 
 type SuggestionProps = {
-  data: {
-    id: number;
-    title: string;
-    details: string;
-    category: CategoryType;
-    comments?: any[];
-    upvotes?: any[];
-  };
+  data: ISuggestionResponse;
 };
 
 const Suggestion = ({ data: { id, title, details, category, upvotes, comments } }: SuggestionProps) => {
