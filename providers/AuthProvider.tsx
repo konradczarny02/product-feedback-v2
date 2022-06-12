@@ -1,28 +1,29 @@
 import { useState, useEffect, createContext, useCallback, useMemo } from 'react';
-import { PropsChildren, User } from '../types/types';
+import { PropsChildren, IUser } from '../types/types';
 import fetcher from '../lib/fetcher';
 
 interface IAuthContext {
   isAuthenticated: boolean;
-  user: User;
+  user: IUser;
   handleSignIn: () => void;
   handleSignOut: () => void;
 }
 
 export const AuthContext = createContext<IAuthContext>({
   isAuthenticated: false,
-  user: {} as User,
+  user: {} as IUser,
   handleSignIn: () => {},
   handleSignOut: () => {},
 });
 
 const AuthProvider = ({ children }: PropsChildren) => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
-  const [user, setUser] = useState<User>({} as User);
+  const [user, setUser] = useState<IUser>({} as IUser);
   const handleSignIn = useCallback(() => setIsAuthenticated(true), []);
-  const handleSignOut = useCallback(() => {
+  const handleSignOut = useCallback(async () => {
+    await fetcher('/signout');
     setIsAuthenticated(false);
-    setUser({} as User);
+    setUser({} as IUser);
   }, []);
 
   useEffect(() => {

@@ -1,7 +1,11 @@
 import { FilterWrapper } from '../Filter/Filter.styles';
 import { Category as CategoryType } from '../../../types/types';
 
-const Category = ({ name }: { name: CategoryType }) => {
+type Props = {
+  name: CategoryType;
+};
+
+const Category = ({ name }: Props) => {
   return <FilterWrapper>{name}</FilterWrapper>;
 };
 

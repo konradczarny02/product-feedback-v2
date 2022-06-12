@@ -3,7 +3,9 @@ import { useRouter } from 'next/router';
 
 const SignIn = () => {
   const router = useRouter();
-  return <Wrapper onClick={() => router.push('/signin')}>Sign In</Wrapper>;
+  const handleSignIn = () => router.push('/signin');
+
+  return <Wrapper onClick={handleSignIn}>Sign In</Wrapper>;
 };
 
 export default SignIn;
