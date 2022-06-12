@@ -54,6 +54,8 @@ export const getServerSideProps = async () => {
 export default Home;
 
 export const Wrapper = styled.div`
+  min-height: 100vh;
+
   @media (min-width: 1440px) {
     display: grid;
     grid-template-columns: 250px 900px;
