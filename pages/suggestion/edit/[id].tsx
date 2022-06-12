@@ -6,15 +6,13 @@ import { useContext } from 'react';
 import { ModalContext } from '../../../providers/ModalProvider';
 import Modal from '../../../components/organisms/Modal/Modal';
 import DeleteModal from '../../../components/molecules/ModalContent/DeleteModal';
+import { ISuggestionResponse } from '../../../types/types';
 
-export const Wrapper = styled.div`
-  height: 100%;
-  width: 90%;
-  margin: 24px auto;
-  max-width: 600px;
-`;
+type Props = {
+  suggestion: ISuggestionResponse;
+};
 
-const Edit = ({ suggestion }) => {
+const Edit = ({ suggestion }: Props) => {
   const { isOpen } = useContext(ModalContext);
   return (
     <Wrapper>
@@ -29,7 +27,7 @@ const Edit = ({ suggestion }) => {
   );
 };
 
-export const getServerSideProps = async (context) => {
+export const getServerSideProps = async (context: { params: { id: string | number } }) => {
   let id: number = +context.params.id;
   const suggestion = await prisma.suggestion.findUnique({
     where: {
@@ -43,5 +41,12 @@ export const getServerSideProps = async (context) => {
     },
   };
 };
+
+export const Wrapper = styled.div`
+  height: 100%;
+  width: 90%;
+  margin: 24px auto;
+  max-width: 600px;
+`;
 
 export default Edit;

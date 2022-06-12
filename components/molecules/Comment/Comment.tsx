@@ -1,8 +1,14 @@
-import { StyledComment, AuthorInfo, Content } from './Comment.styles';
-import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import useReplies from '../../../lib/useReplies';
 import CommentReply from '../../atoms/CommentReply/CommentReply';
-import fetcher from '../../../lib/fetcher';
+import Spinner from '../../atoms/Spinner/Spinner';
+import Image from 'next/image';
+import { StyledComment, AuthorInfo, Content, RepliesList, SpinnerWrapper } from './Comment.styles';
+import { ICommentWithUser } from '../../../types/types';
+
+type Props = {
+  comment: ICommentWithUser;
+  isReply: boolean;
+};
 
 const Comment = ({
   comment: {
@@ -11,16 +17,8 @@ const Comment = ({
     id,
   },
   isReply,
-}) => {
-  const [isReplying, setIsReplying] = useState<boolean>(false);
-  const [replies, setReplies] = useState([]);
-
-  useEffect(() => {
-    fetcher('/comment/getReplies', { parentId: id })
-      .then((res) => res.json())
-      .then((data) => setReplies(data))
-      .catch((error) => console.error(error));
-  }, [id]);
+}: Props) => {
+  const { isLoading, handleReply, isReplying, replies } = useReplies(id);
 
   return (
     <StyledComment isReply={isReply}>
@@ -32,17 +30,26 @@ const Comment = ({
           </h3>
           <h4>@{userName}</h4>
         </div>
-        <button onClick={() => setIsReplying((prevState) => !prevState)}>Reply</button>
+        <button onClick={handleReply}>Reply</button>
       </AuthorInfo>
       <Content>{content}</Content>
       {isReplying ? <CommentReply parentId={id} /> : null}
-      {replies.length ? (
-        <ul style={{ marginLeft: 'auto', width: '90%' }}>
-          {replies.map((reply) => (
-            <Comment key={reply.id} comment={reply} isReply={true} />
-          ))}
-        </ul>
-      ) : null}
+      {(() => {
+        if (isLoading)
+          return (
+            <SpinnerWrapper>
+              <Spinner />
+            </SpinnerWrapper>
+          );
+        if (replies.length && !isLoading)
+          return (
+            <RepliesList>
+              {replies.map((reply: ICommentWithUser) => (
+                <Comment key={reply.id} comment={reply} isReply={true} />
+              ))}
+            </RepliesList>
+          );
+      })()}
     </StyledComment>
   );
 };

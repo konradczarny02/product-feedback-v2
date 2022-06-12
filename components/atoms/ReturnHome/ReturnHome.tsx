@@ -1,6 +1,6 @@
+import Link from 'next/link';
 import { StyledReturn } from './ReturnHome.styles';
 import ReturnIcon from '../../../styles/images/icons/returnIcon.svg';
-import Link from 'next/link';
 
 const ReturnHome = () => {
   return (

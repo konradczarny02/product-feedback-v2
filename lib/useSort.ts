@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
+import { Filter, ISuggestionResponse, SortBy } from '../types/types';
 
-const sortData = (sort, data, fn) => {
+const sortData = (sort: SortBy, data: any[], fn: (val: any[]) => void) => {
   switch (sort) {
     case 'Most Upvotes':
       fn([...data].sort((a, b) => b.upvotes.length - a.upvotes.length));
@@ -16,7 +17,7 @@ const sortData = (sort, data, fn) => {
   }
 };
 
-export const useSort = (data, filter, sort) => {
+export const useSort = (data: ISuggestionResponse[], filter: Filter, sort: SortBy) => {
   const [filteredData, setFilteredData] = useState(data);
 
   useEffect(() => {

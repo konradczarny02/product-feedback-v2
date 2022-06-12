@@ -3,16 +3,20 @@ import RoadMapHeader from '../components/molecules/RoadmapHeader/RoadMapHeader';
 import RoadmapNavigation from '../components/molecules/RoadmapNavigation/RoadmapNavigation';
 import RoadmapList from '../components/organisms/RoadmapList/RoadmapList';
 import { useCallback, useContext, useState } from 'react';
-import { Status } from '../types/types';
+import { ISuggestionResponse, Status } from '../types/types';
 import { ModalContext } from '../providers/ModalProvider';
 import Modal from '../components/organisms/Modal/Modal';
 import SignModal from '../components/molecules/ModalContent/SignModal';
 
-const filterArr = (arr, filterName) => {
+const filterArr = (arr: ISuggestionResponse[], filterName: Status) => {
   return arr.filter((item) => item.status === filterName);
 };
 
-const Roadmap = ({ suggestions }) => {
+type Props = {
+  suggestions: ISuggestionResponse[];
+};
+
+const Roadmap = ({ suggestions }: Props) => {
   const { isOpen } = useContext(ModalContext);
   const [active, setActive] = useState<Status>('Planned');
   const handleSetActive = useCallback((value: Status) => {

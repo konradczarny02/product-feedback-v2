@@ -1,6 +1,6 @@
 import { FormWrapper, ButtonWrapper } from './AddComment.styles';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { useContext, useState } from 'react';
+import { useContext, useState, FormEvent } from 'react';
 import fetcher from '../../../lib/fetcher';
 import { useRouter } from 'next/router';
 import { AuthContext } from '../../../providers/AuthProvider';
@@ -17,8 +17,8 @@ const AddComment = ({ suggestionId }: Props) => {
   const router = useRouter();
   const { user } = useContext(AuthContext);
   const [num, setNum] = useState(250);
-  const handleCharactersLeft = (event) => {
-    let val = event.target.value.length;
+  const handleCharactersLeft = (event: FormEvent<HTMLTextAreaElement>) => {
+    let val = event.currentTarget.value.length;
     setNum(250 - val);
   };
 

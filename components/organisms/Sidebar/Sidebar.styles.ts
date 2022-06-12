@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
-interface SidebarWrapperInterface {
+type Props = {
   isOpen: boolean;
-}
+};
 
-export const SidebarWrapper = styled.div<SidebarWrapperInterface>`
+export const SidebarWrapper = styled.div<Props>`
   width: 270px;
   height: calc(100% - 72px);
   position: absolute;

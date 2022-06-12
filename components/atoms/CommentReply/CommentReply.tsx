@@ -1,11 +1,10 @@
-import { StyledForm } from './CommentReply.styles';
-import { useForm, SubmitHandler } from 'react-hook-form';
-import { StyledError } from '../../organisms/Forms/CreateForm.styles';
-import fetcher from '../../../lib/fetcher';
-import { useContext, useEffect, useState } from 'react';
+import { useContext } from 'react';
 import { useRouter } from 'next/router';
-import useUserId from '../../../lib/userUserId';
+import { useForm, SubmitHandler } from 'react-hook-form';
+import fetcher from '../../../lib/fetcher';
 import { AuthContext } from '../../../providers/AuthProvider';
+import { StyledForm } from './CommentReply.styles';
+import { StyledError } from '../../organisms/Forms/CreateForm.styles';
 
 type Props = {
   parentId: number;

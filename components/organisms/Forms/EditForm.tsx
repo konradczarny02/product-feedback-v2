@@ -7,7 +7,7 @@ import EditIcon from '../../atoms/EditIcon/EditIcon';
 import { useContext, useState } from 'react';
 import { useRouter } from 'next/router';
 import { ModalContext } from '../../../providers/ModalProvider';
-import { suggestionResponse } from '../../../types/types';
+import { ISuggestionResponse } from '../../../types/types';
 
 interface FormInterface {
   title: string;
@@ -17,7 +17,7 @@ interface FormInterface {
 }
 
 type Props = {
-  suggestion: suggestionResponse;
+  suggestion: ISuggestionResponse;
 };
 
 const errorMessage = `Can't be empty`;

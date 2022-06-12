@@ -44,6 +44,7 @@ export const StyledForm = styled.form<{ errors: any }>`
     color: ${({ theme }) => theme.colors.white};
     font-weight: 700;
     padding: 0 16px;
+    cursor: pointer;
   }
 
   @media (min-width: 768px) {

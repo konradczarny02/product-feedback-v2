@@ -1,7 +1,7 @@
 import AddButton from '../../atoms/AddButton/AddButton';
 import { SortWrapper } from './Sort.styles';
 import SuggestionIcon from '../../../styles/images/icons/suggestionsIcon.svg';
-import { useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import fetcher from '../../../lib/fetcher';
 import { SortBy } from '../../../types/types';
 import { useAppDispatch } from '../../../store/hooks';
@@ -12,9 +12,9 @@ const Sort = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    fetcher('/suggestion')
+    fetcher('/suggestion/count')
       .then((data) => data.json())
-      .then((data) => setSuggestionsNumber(data.length));
+      .then((data: number) => setSuggestionsNumber(data));
   }, []);
 
   return (
@@ -23,7 +23,7 @@ const Sort = () => {
       <span>{suggestionsNumber} Suggestions</span>
       <p>Sort by : </p>
       <select
-        onChange={(event) => {
+        onChange={(event: ChangeEvent<HTMLSelectElement>) => {
           const target = event.target as HTMLSelectElement;
           const value = target.value as SortBy;
           dispatch(change(value));

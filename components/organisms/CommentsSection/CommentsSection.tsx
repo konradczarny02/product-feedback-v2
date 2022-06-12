@@ -1,13 +1,13 @@
 import { Wrapper } from './CommentsSection.styles';
 import Comment from '../../molecules/Comment/Comment';
-import { Comment as CommentType, User } from '../../../types/types';
+import { ICommentWithUser } from '../../../types/types';
 
 type Props = {
-  comments: any[];
+  comments: ICommentWithUser[];
   num: number;
 };
 
-const CommentsSection = ({ comments, num }) => {
+const CommentsSection = ({ comments, num }: Props) => {
   return (
     <Wrapper>
       <h2>{num} Comments</h2>

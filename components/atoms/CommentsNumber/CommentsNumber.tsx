@@ -1,9 +1,6 @@
 import { StyledCommentsNumber } from './CommentsNumber.styles';
 import CommentsIcon from '../../../styles/images/icons/commentIcon.svg';
-import { useContext } from 'react';
-import { AuthContext } from '../../../providers/AuthProvider';
-import { ModalContext } from '../../../providers/ModalProvider';
-import { useRouter } from 'next/router';
+import useRedirect from '../../../lib/useRedirect';
 
 type CommentsProps = {
   commentsNumber: number;
@@ -11,19 +8,10 @@ type CommentsProps = {
 };
 
 const CommentsCount = ({ commentsNumber, suggestionId }: CommentsProps) => {
-  const { isAuthenticated } = useContext(AuthContext);
-  const { handleModalOpen } = useContext(ModalContext);
-  const router = useRouter();
+  const { handleRedirect } = useRedirect(`/suggestion/${suggestionId}`);
+
   return (
-    <StyledCommentsNumber
-      onClick={() => {
-        if (!isAuthenticated) {
-          handleModalOpen();
-        } else {
-          router.push(`/suggestion/${suggestionId}`);
-        }
-      }}
-    >
+    <StyledCommentsNumber onClick={handleRedirect}>
       <CommentsIcon />
       <p>{commentsNumber}</p>
     </StyledCommentsNumber>

@@ -1,7 +1,8 @@
 import { StatusWrapper } from './RoadmapStatus.styles';
+import { Status } from '../../../types/types';
 
 type StatusProps = {
-  statusName: 'Planned' | 'In-Progress' | 'Live';
+  statusName: Status;
   statusNumber: number;
 };
 

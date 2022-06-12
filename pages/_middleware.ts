@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
+import { NextRequest } from 'next/server';
 
-export default function middleware(req) {
+export default function middleware(req: NextRequest) {
   const { pathname, origin } = req.nextUrl;
 
   if (pathname.startsWith('/suggestion')) {
