@@ -1,8 +1,7 @@
-import { useRouter } from 'next/router';
 import Upvotes from '../../atoms/Upvotes/Upvotes';
 import CommentsNumber from '../../atoms/CommentsNumber/CommentsNumber';
 import { StyledSuggestion, StyledDescription } from './Suggestion.styles';
-import { Category as CategoryType, ISuggestionResponse } from '../../../types/types';
+import { ISuggestionResponse } from '../../../types/types';
 import Category from '../../atoms/Category/Category';
 
 type SuggestionProps = {

@@ -4,8 +4,12 @@ import { RoadmapWrapper } from './RoadmapLink.styles';
 import { useEffect, useState } from 'react';
 import fetcher from '../../../lib/fetcher';
 
+interface IStatus {
+  [key: string]: number;
+}
+
 const RoadmapLink = () => {
-  const [status, setStatus] = useState({});
+  const [status, setStatus] = useState<IStatus>({} as IStatus);
 
   useEffect(() => {
     fetcher('/suggestion/status')

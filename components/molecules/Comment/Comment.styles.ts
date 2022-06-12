@@ -65,3 +65,26 @@ export const Content = styled.p`
     margin-left: auto;
   }
 `;
+
+export const RepliesList = styled.ul`
+  margin-left: auto;
+  width: 90%;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 5%;
+    left: calc(-11.1% + 20px);
+    width: 2px;
+    background-color: ${({ theme }) => theme.colors.darkGray};
+    height: 95%;
+    opacity: 0.1;
+  }
+`;
+
+export const SpinnerWrapper = styled.div`
+  width: 90%;
+  display: flex;
+  justify-content: center;
+`;

@@ -2,7 +2,7 @@ import { ListItemWrapper, Details, CategoryWrapper, UpvoteWrapper, Title, Status
 import Category from '../../atoms/Category/Category';
 import Upvotes from '../../atoms/Upvotes/Upvotes';
 import CommentsNumber from '../../atoms/CommentsNumber/CommentsNumber';
-import { Status, Category as CategoryType, ISuggestionResponse } from '../../../types/types';
+import { ISuggestionResponse } from '../../../types/types';
 
 type Props = {
   data: ISuggestionResponse;
