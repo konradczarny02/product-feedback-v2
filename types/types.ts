@@ -13,6 +13,9 @@ export type Status = 'Planned' | 'In-Progress' | 'Live';
 
 export interface IUser {
   id: number;
+  createdAt?: Date;
+  updatedAt?: Date;
+  password?: string;
   email?: string;
   firstName: string;
   lastName: string;
