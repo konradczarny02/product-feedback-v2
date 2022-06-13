@@ -1,12 +1,12 @@
 # Product Feedback App
 
 ### This is my solution to: [Frontend Mentor Challenge](https://www.frontendmentor.io/challenges/product-feedback-app-wbvUYqjR6 "Frontend Mentor Challenge")
-[Live Version](https://product-feedback-v2.vercel.app/ "Live Version")
+### [Live Version](https://product-feedback-v2.vercel.app/ "Live Version")
 
 ### Overview: 
 This is my first time creating fullstack app. By creating this I have learnt so much and It was also so much fun.
 
-####Features: 
+#### Features: 
 - Responsive design
 - Create User
 - Authentication
@@ -21,7 +21,7 @@ This is my first time creating fullstack app. By creating this I have learnt so 
 - View Roadmap
 
 
-####Technologies: 
+#### Technologies: 
 - [Next.js](https://nextjs.org/ "Next.js")
 - [Typescript](https://www.typescriptlang.org/ "Typescript")
 - [PostgreSQL](https://www.postgresql.org/ "PostgreSQL")
