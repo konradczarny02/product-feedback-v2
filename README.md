@@ -5,7 +5,7 @@
 
 ### Credentials  
 email: user@test.com      
-password: password. 
+password: password
 
 ### Overview: 
 This is my first time creating fullstack app. By creating this I have learnt so much and It was also so much fun.
