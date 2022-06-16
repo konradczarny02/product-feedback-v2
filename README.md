@@ -3,6 +3,10 @@
 ### This is my solution to: [Frontend Mentor Challenge](https://www.frontendmentor.io/challenges/product-feedback-app-wbvUYqjR6 "Frontend Mentor Challenge")
 ### [Live Version](https://product-feedback-v2.vercel.app/ "Live Version")
 
+###Credentials
+email: user@test.com
+password: password
+
 ### Overview: 
 This is my first time creating fullstack app. By creating this I have learnt so much and It was also so much fun.
 
